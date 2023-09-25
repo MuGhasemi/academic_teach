@@ -27,8 +27,7 @@ SECRET_KEY = 'django-insecure-0n68+a08u)=%8((6m#6kfh&(nvew8-0948#kg)f1xg%#&xw^hp
 DEBUG = True
 
 LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = '/book/'
-LOGOUT_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
 SIGN_UP_URL = '/account/sign-up/'
 
 ALLOWED_HOSTS = []
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'courses.apps.CoursesConfig',
 ]
 
 MIDDLEWARE = [

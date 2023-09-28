@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
     'courses.apps.CoursesConfig',
 ]
 
@@ -59,9 +59,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'config.urls'
 
 MEDIA_URL = 'templates/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates/media/')
+TEMPLATE_DIR = MEDIA_ROOT
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -126,9 +126,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'templates/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'templates/static/'),
+    os.path.join(BASE_DIR, STATIC_URL),
 )
 
 # Default primary key field type

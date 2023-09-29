@@ -1,12 +1,17 @@
 from django.db import models
 from accounts.models import Student, Teacher
 from django.utils import timezone
+from django.utils.text import slugify
 
 class Lesson(models.Model):
     title = models.CharField(
         max_length=100,
+        unique=True,
         db_index = True,)
     description = models.TextField()
+    slug = models.SlugField(
+        unique=True,
+        blank=True)
     teacher = models.ForeignKey(
         Teacher,
         on_delete=models.PROTECT,
@@ -30,6 +35,11 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Enrollment(models.Model):

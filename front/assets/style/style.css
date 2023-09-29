@@ -1,0 +1,255 @@
+
+
+/* css rest  */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color: var(--primary-text);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+/* set font for document */
+body {
+    font-family: Vazirmatn300;
+    /* width: 100vw;
+    height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+html {
+    scale: smooth;
+    /* overflow-x: hidden; */
+}
+
+
+
+
+
+
+.login-form {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #2196f3; */
+}
+
+.login-content-form {
+  width: 55%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 700px;
+  width: 500px;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid var(--primary-blue);
+  border-radius: 20px;
+  left: -50%;
+  filter: var(--shadow-header-filter);
+}
+
+.login-content-form h2 {
+  font-size: 2.3rem;
+  font-family: Vazirmatn700;
+  color: var(--primary-blue);
+}
+
+.login-content-form h4 {
+  font-size: 1.5rem;
+  font-family: Vazirmatn500;
+  color: var(--primary-blue);
+}
+
+.login-inputs-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-inputs-form input {
+  outline: none;
+  /* width: 100%; */
+  width: 100%;
+  height: 60px;
+  border-radius: 15px;
+  padding: 8px 60px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: var(--border-blue);
+  margin-bottom: 20px;
+}
+
+.login-inputs-form svg {
+  width: 30px;
+}
+.login-inputs-form svg path {
+  stroke: var(--primary-blue);
+}
+.password path {
+  fill: var(--primary-blue);
+}
+.userName,
+.password {
+  position: relative;
+}
+.userName svg,
+.password svg {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 10;
+}
+
+#userName:focus,
+#password:focus {
+  border: 2px solid var(--primary-blue);
+}
+
+#to-signin,
+#to-home {
+  font-size: 1.2rem;
+  font-family: Vazirmatn500;
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+#to-signin:hover,
+#to-home:hover {
+  color: var(--hover-blue);
+}
+#login-btn-form {
+  width: 165px;
+  height: 45px;
+  border-radius: 15px;
+  background-color: var(--primary-white);
+  outline: none;
+  border: var(--border-blue);
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  font-family: Vazirmatn500;
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+
+#login-btn-form:hover {
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+}
+#login-btn-form:active {
+  background-color: var(--hover-blue);
+}
+.login-background {
+  width: 65%;
+  height: 100%;
+  background: url(../img/picture/login.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-self: flex-end;
+  box-shadow: 10px 0 8px rgba(0, 0, 0, 0.25);
+}

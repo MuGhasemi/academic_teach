@@ -1,40 +1,10 @@
 import uuid
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.hashers import make_password
 
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
-# from .managers import UserManager
-
-# class User(AbstractUser, PermissionsMixin):
-#     email = models.EmailField(("email address"), unique=True)
-#     is_admin = models.BooleanField(default=False)
-#     is_delete = models.BooleanField(default=False)
-#     user_image = models.ImageField(upload_to = 'user_image/',
-#                                     null = True,
-#                                     blank = True)
-
-#     USERNAME_FIELD = "email"
-#     REQUIRED_FIELDS = ['username',
-#                        'first_name',
-#                        'last_name']
-#     objects = UserManager()
-#     class Meta:
-#         db_table = 'user'
-
-#     def __str__(self) -> str:
-#         return self.username
-
-#     def has_perm(self, perm, obj=None):
-#         return True
-
-#     def has_module_perms(self, app_label):
-#         return True
-
-#     @property
-#     def is_staff(self):
-#         return self.is_admin
 
 class Student(models.Model):
     student_id = models.UUIDField(
@@ -54,13 +24,13 @@ class Student(models.Model):
             blank=True,
             null=True)
     email = models.EmailField(
-            max_length=150,
+            max_length=200,
             unique=True,
             error_messages={"unique": ("A student with that email already exists."),})
     password = models.CharField(max_length=128)
     is_active = models.BooleanField(default=True,)
     is_delete = models.BooleanField(default=False,)
-    date_joined = models.DateTimeField(default=datetime.now)
+    date_joined = models.DateTimeField(default=timezone.now)
     student_image = models.ImageField(
             upload_to = 'student_image/',
             verbose_name="image",

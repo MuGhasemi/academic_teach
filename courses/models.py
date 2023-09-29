@@ -30,3 +30,22 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Enrollment(models.Model):
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='enrollments')
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+        related_name='enrollments')
+    registration_date = models.DateTimeField(auto_now_add=True,)
+
+    class Meta():
+        db_table = 'enrollment'
+        unique_together = ('student', 'lesson')
+
+    def __str__(self):
+        return f"{self.student} - {self.lesson}"

@@ -1,5 +1,4 @@
 {% extends 'parents/main.html' %}
-{% load static %}
 
 {% block title %}Login{% endblock %}
 
@@ -56,8 +55,8 @@
             </label>
             {{ form.password }}
           </div>
-          <a href="#" id="to-signin"> حساب کاربری ندارید ؟ </a>
-          <a href="#" id="to-home"> بازگشت به خانه</a>
+          <a href="{% url 'accounts:sign_up' %}" id="to-signin"> حساب کاربری ندارید ؟ </a>
+          <a href="{% url 'courses:home' %}" id="to-home"> بازگشت به خانه</a>
           <button id="login-btn-form">ورود</button>
         </form>
       </div>

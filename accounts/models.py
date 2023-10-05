@@ -3,8 +3,36 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractUser
 
-from django.contrib.auth.models import AbstractUser, PermissionsMixin
+class User(AbstractUser):
+    USER_TYPE_CHOICES =(
+        ('admin','Admin'),
+        ('student','Student'),
+        ('teacher','Teacher'),
+
+    )
+    email = models.EmailField(
+        max_length=200,
+        unique=True)
+    is_delete = models.BooleanField(default=False)
+    user_type = models.CharField(
+        max_length=7,
+        choices=USER_TYPE_CHOICES,
+        default='student')
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username',]
+
+    def is_student(self):
+        return self.user_type == 'student'
+
+    def is_teacher(self):
+        return self.user_type == 'teacher'
+
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super().save(*args, **kwargs)
 
 class Student(models.Model):
     student_id = models.UUIDField(

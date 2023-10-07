@@ -148,7 +148,7 @@ html {
   width: 500px;
   position: relative;
   background-color: #fff;
-  border: 1px solid var(--primary-blue);
+  border: 1px solid var(--primary-color);
   border-radius: 20px;
   left: -50%;
   filter: var(--shadow-header-filter);
@@ -157,13 +157,13 @@ html {
 .login-content-form h2 {
   font-size: 2.3rem;
   font-family: Vazirmatn700;
-  color: var(--primary-blue);
+  color: var(--primary-color);
 }
 
 .login-content-form h4 {
   font-size: 1.5rem;
   font-family: Vazirmatn500;
-  color: var(--primary-blue);
+  color: var(--primary-color);
 }
 
 .login-inputs-form {
@@ -188,10 +188,10 @@ html {
   width: 30px;
 }
 .login-inputs-form svg path {
-  stroke: var(--primary-blue);
+  stroke: var(--primary-color);
 }
 .password path {
-  fill: var(--primary-blue);
+  fill: var(--primary-color);
 }
 .userName,
 .password {
@@ -207,14 +207,14 @@ html {
 
 #userName:focus,
 #password:focus {
-  border: 2px solid var(--primary-blue);
+  border: 2px solid var(--primary-color);
 }
 
 #to-signin,
 #to-home {
   font-size: 1.2rem;
   font-family: Vazirmatn500;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   text-decoration: none;
 }
 #to-signin:hover,
@@ -230,14 +230,14 @@ html {
   border: var(--border-blue);
   font-family: inherit;
   font-size: 1.5rem;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   font-family: Vazirmatn500;
   cursor: pointer;
   transition: 0.1s linear;
 }
 
 #login-btn-form:hover {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-color);
   color: var(--primary-white);
 }
 #login-btn-form:active {
@@ -289,7 +289,7 @@ html {
   height: 700px;
   width: 500px;
   background-color: #fff;
-  border: 1px solid var(--primary-blue);
+  border: 1px solid var(--primary-color);
   padding: 40px 60px;
   display: flex;
   flex-direction: column;
@@ -302,14 +302,14 @@ html {
 .sing-form > h2 {
   font-size: 2.3rem;
   font-family: Vazirmatn700;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
 .sing-form > h4 {
   font-size: 1.5rem;
   font-family: Vazirmatn500;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
@@ -335,7 +335,7 @@ html {
   margin-bottom: 10px;
 }
 .singin-inputs-form input:focus {
-  border: 2px solid var(--primary-blue);
+  border: 2px solid var(--primary-color);
 }
 
 .singin-inputs-form svg {
@@ -346,13 +346,13 @@ html {
   z-index: 10;
 }
 .singin-inputs-form svg path {
-  stroke: var(--primary-blue);
+  stroke: var(--primary-color);
 }
 
 #to-login {
   font-size: 1.2rem;
   font-family: Vazirmatn500;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -367,14 +367,14 @@ html {
   border: var(--border-blue);
   font-family: inherit;
   font-size: 1.3rem;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   font-family: Vazirmatn500;
   cursor: pointer;
   transition: 0.1s linear;
 }
 
 #sin-btn-form:hover {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-color);
   color: var(--primary-white);
 }
 #sin-btn-form:active {

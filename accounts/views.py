@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from .forms import LoginUserForm, RegisterUserForm
 from .models import User, Student
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from config.settings import LOGIN_URL, LOGIN_REDIRECT_URL, SIGN_UP_URL
 
 class LoginView(View):
@@ -61,3 +61,8 @@ class RegisterView(View):
             return redirect(SIGN_UP_URL)
         # TODO - create message for register failed
         return redirect(SIGN_UP_URL)
+
+def LogoutView(request):
+    logout(request)
+    # TODO - create message for logout user
+    return redirect(LOGIN_REDIRECT_URL)

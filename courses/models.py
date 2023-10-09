@@ -17,6 +17,7 @@ class Lesson(models.Model):
         on_delete=models.PROTECT,
         related_name='lessons',)
     start_date = models.DateField(default=timezone.now)
+    price = models.PositiveIntegerField(default=0)
     capacity = models.PositiveSmallIntegerField(default=20,)
     number_of_sessions = models.PositiveSmallIntegerField(default=10,)
     days_of_week = models.PositiveSmallIntegerField(default=3,)
@@ -35,7 +36,7 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)

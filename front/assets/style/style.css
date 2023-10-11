@@ -419,7 +419,6 @@ html {
   font-family: inherit;
 }
 
-
 /* nav bar  */
 nav {
   background-color: var(--primary-color);
@@ -427,14 +426,13 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top:var(--upper-distance) ;
-  border-radius:var(--radius);
+  margin-top: var(--upper-distance);
+  border-radius: var(--radius);
   position: relative;
 }
 
 nav ul {
   display: flex;
-
 }
 
 nav ul li {
@@ -444,12 +442,13 @@ nav ul li a {
   color: var(--primary-white);
   text-decoration: none;
   font-size: 1.1rem;
-  font-family: Vazirmatn400 ;
-  
+  font-family: Vazirmatn400;
 }
 
-nav .nav__log-sing{
+nav .nav__log-sing {
   color: var(--primary-white);
+  /* color: var(--primary-text); */
+
   text-decoration: none;
   background-color: var(--secondary-color);
   position: absolute;
@@ -461,9 +460,54 @@ nav .nav__log-sing{
   height: 65px;
   width: 140px;
   font-size: 1.2rem;
-  font-family: Vazirmatn500 ;
-  transition: .2s linear;
+  font-family: Vazirmatn500;
+  transition: 0.2s linear;
 }
-nav .nav__log-sing:hover{
+nav .nav__log-sing:hover {
   background-color: var(--hover-blue);
+}
+
+/* header main */
+.header__main {
+  margin-top: var(--upper-distance);
+  background-color: var(--primary-color);
+  border-radius: var(--radius);
+  height: 300px;
+}
+
+/* header counter */
+.header__counter {
+  margin-top: var(--upper-distance);
+  background-color: var(--primary-color);
+  border-radius: var(--radius);
+  position: relative;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  /* align-items: flex-end; */
+}
+.header__counter div {
+  position: absolute;
+  top: 10px;
+  background-color: var(--secondary-color);
+  border-radius: var(--radius);
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-family: Vazirmatn700;
+  color: var(--primary-white);
+}
+.header__counter div span {
+  margin: 0 10px;
+  color: var(--primary-white);
+}
+.header__counter div span:first-child {
+  font-size: 2rem;
+}
+.header__counter__stu {
+  right: 100px;
+}
+.header__counter__teach {
+  left: 100px;
 }

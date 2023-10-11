@@ -9,17 +9,27 @@
     <link rel="stylesheet" href="assets/style/fonts.css" />
     <!-- css var -->
     <link rel="stylesheet" href="assets/style/var.css" />
+    <!-- Google font CDN  -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <title>Document</title>
   </head>
   <body>
-    <header>
+    <header class="container">
       <div class="header-nav__top-side">
         <h1>LOGO</h1>
-        <form action="">
-          <input type="text" />
+        <form action="" method="get">
+          <label for="searchBox">
+            <button type="submit" class="search__btn">
+              <span class="material-symbols-outlined"> search </span>
+            </button>
+          </label>
+          <input type="text" id="searchBox" />
         </form>
       </div>
-      <nav>
+      <nav class="container">
         <ul>
           <li><a href="">خانه</a></li>
           <li><a href="">دوره ها</a></li>
@@ -41,7 +51,6 @@
       </div>
 
       <div class="cures-list">
-
         <!-- card  -->
         <div class="product-card">
           <div class="product-card__img">
@@ -83,11 +92,8 @@
           </div>
         </div>
         <!-- end of card  -->
-
       </div>
     </main>
-    <footer>
-      
-    </footer>
+    <footer></footer>
   </body>
 </html>

@@ -2,9 +2,14 @@
 <html lang="fa" dir="rtl">
   <head>
     {% include 'partials/head.html' %}
-    <title>{% block title %}{% endblock  %}</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <header class="container">
+      {% include 'partials/search.html' %}
+      {% include 'partials/navigation.html' %}
+      {% include 'partials/header_content.html' %}
+    </header>
     {% block content %}{% endblock %}
   </body>
 </html>

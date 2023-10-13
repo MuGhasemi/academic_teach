@@ -540,3 +540,25 @@ main .slider-text {
   justify-content: center;
 
 }
+
+main .cures-list{
+  margin-top: var(--upper-distance);
+  padding:0 80px;
+}
+
+main .product-card{
+  width: 400px;
+  height: 450px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aquamarine;
+}
+
+main .product-card .product-card__img{
+  border-radius: var(--radius);
+  background-color: blueviolet;
+  width: 90%;
+}

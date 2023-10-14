@@ -1,0 +1,102 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<main class="container">
+  <div class="slider-box container">
+    <div class="slider-container swiper">
+      <div class="swiper-wrapper">
+        {% for lesson in slider_contents %}
+        <div class="swiper-slide">
+          <div class="product-card">
+            <div class="product-card__img">
+              <div class="product-card__count">
+                <!-- FIXME - Add icon -->
+                <span class="material-symbols-outlined"> person </span>
+                <span>100</span>
+              </div>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__content__header">{{ lesson.title }}</h3>
+              <div class="product-card__content__session">
+                <span class="material-symbols-outlined"> schedule </span>
+                :
+                <span>{{ lesson.number_of_sessions }} جلسه</span>
+              </div>
+              <div class="product-card__content__teacher">
+                <span class="material-symbols-outlined"> person </span>
+                :
+                <span>{{ lesson.teacher }}</span>
+              </div>
+      
+              <div class="product-card__content__line"></div>
+              <div class="product-card__price__btn">
+                <a href="">ثبت نام </a>
+                <div class="product-card__price">
+                  {% if lesson.price == 0 %}
+                  <span>رایگان</span>
+                  {% else %}
+                  <span>{{ lesson.price }}</span>
+                  <span>تومان</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="slider-text">test</div>
+  </div>
+
+  <div class="cures-list container">
+    <!-- card  -->
+    {% for lesson in lessons %}
+    <div class="product-card">
+      <div class="product-card__img">
+        <div class="product-card__count">
+          <!-- FIXME - Add icon -->
+          <span class="material-symbols-outlined"> person </span>
+          <span>100</span>
+        </div>
+      </div>
+      <div class="product-card__content">
+        <h3 class="product-card__content__header">{{ lesson.title }}</h3>
+        <div class="product-card__content__session">
+          <span class="material-symbols-outlined"> schedule </span>
+          :
+          <span>{{ lesson.number_of_sessions }} جلسه</span>
+        </div>
+        <div class="product-card__content__teacher">
+          <span class="material-symbols-outlined"> person </span>
+          :
+          <span>{{ lesson.teacher }}</span>
+        </div>
+
+        <div class="product-card__content__line"></div>
+        <div class="product-card__price__btn">
+          <a href="">ثبت نام </a>
+          <div class="product-card__price">
+            {% if lesson.price == 0 %}
+            <span>رایگان</span>
+            {% else %}
+            <span>{{ lesson.price }}</span>
+            <span>تومان</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- end of card  -->
+  </div>
+</main>
+<footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script type="module" src="{% static 'assets/App/index.js' %}"></script>
+</footer>
+{% endblock %}

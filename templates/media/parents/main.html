@@ -5,11 +5,13 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    {% if not request.path == '/account/login/' and not request.path == '/account/sign-up/' %}
     <header class="container">
       {% include 'partials/search.html' %}
       {% include 'partials/navigation.html' %}
       {% include 'partials/header_content.html' %}
     </header>
+    {% endif %}
     {% block content %}{% endblock %}
   </body>
 </html>

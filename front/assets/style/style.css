@@ -518,7 +518,7 @@ nav .nav__log-sing:hover {
 
 main .slider-box {
   background-color: var(--primary-color);
-  height: 300px;
+  height: 540px;
   margin-top: calc(var(--upper-distance) * 2);
   border-radius: var(--radius);
   display: flex;
@@ -527,9 +527,16 @@ main .slider-box {
 }
 main .slider-container {
   background-color: var(--secondary-color);
-  height: 80%;
+  height: 90%;
   width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  
   border-radius: var(--radius) 0 0 var(--radius);
+}
+.swiper-wrapper{
+  /* background-color: black; */
 }
 main .slider-text {
   height: 80%;
@@ -542,8 +549,6 @@ main .slider-text {
 }
 
 main .cures-list {
-  
-  
   margin-top: var(--upper-distance);
   padding: 0 80px;
   display: grid;

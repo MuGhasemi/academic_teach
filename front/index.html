@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- swiper  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- styles -->
     <link rel="stylesheet" href="assets/style/style.css" />
     <!-- fonts -->
@@ -26,7 +33,7 @@
               <span class="material-symbols-outlined"> search </span>
             </button>
           </label>
-          <input type="text" id="searchBox" placeholder="جستجو..."/>
+          <input type="text" id="searchBox" placeholder="جستجو..." />
         </form>
       </div>
       <nav class="container">
@@ -61,7 +68,112 @@
     </header>
     <main class="container">
       <div class="slider-box container">
-        <div class="slider-container"></div>
+        <div class="slider-container swiper" dir="ltr">
+          <div class="swiper-wrapper" >
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__img">
+                  <div class="product-card__count">
+                    
+                    <span class="material-symbols-outlined"> person </span>
+                    <span>100</span>
+                  </div>
+                </div>
+                <div class="product-card__content">
+                  <h3 class="product-card__content__header">عنوان</h3>
+                  <div class="product-card__content__session">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    :
+                    <span>15 جلسه</span>
+                  </div>
+                  <div class="product-card__content__teacher">
+                    <span class="material-symbols-outlined"> person </span>
+                    :
+                    <span>هر کسی</span>
+                  </div>
+
+                  <div class="product-card__content__line"></div>
+                  <div class="product-card__price__btn">
+                    <a href="">ثبت نام </a>
+                    <div class="product-card__price">
+                      <span>1200</span>
+                      <span>تومان</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__img">
+                  <div class="product-card__count">
+                    
+                    <span class="material-symbols-outlined"> person </span>
+                    <span>100</span>
+                  </div>
+                </div>
+                <div class="product-card__content">
+                  <h3 class="product-card__content__header">عنوان</h3>
+                  <div class="product-card__content__session">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    :
+                    <span>15 جلسه</span>
+                  </div>
+                  <div class="product-card__content__teacher">
+                    <span class="material-symbols-outlined"> person </span>
+                    :
+                    <span>هر کسی</span>
+                  </div>
+
+                  <div class="product-card__content__line"></div>
+                  <div class="product-card__price__btn">
+                    <a href="">ثبت نام </a>
+                    <div class="product-card__price">
+                      <span>1200</span>
+                      <span>تومان</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__img">
+                  <div class="product-card__count">
+                    
+                    <span class="material-symbols-outlined"> person </span>
+                    <span>100</span>
+                  </div>
+                </div>
+                <div class="product-card__content">
+                  <h3 class="product-card__content__header">عنوان</h3>
+                  <div class="product-card__content__session">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    :
+                    <span>15 جلسه</span>
+                  </div>
+                  <div class="product-card__content__teacher">
+                    <span class="material-symbols-outlined"> person </span>
+                    :
+                    <span>هر کسی</span>
+                  </div>
+
+                  <div class="product-card__content__line"></div>
+                  <div class="product-card__price__btn">
+                    <a href="">ثبت نام </a>
+                    <div class="product-card__price">
+                      <span>1200</span>
+                      <span>تومان</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        
         <div class="slider-text">test</div>
       </div>
 
@@ -99,9 +211,9 @@
           </div>
         </div>
         <!-- end of card  -->
-        
       </div>
     </main>
     <footer></footer>
+    <script type="module" src="assets/App/index.js"></script>
   </body>
 </html>

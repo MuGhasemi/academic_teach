@@ -1,8 +1,8 @@
-
-const swiper = new Swiper('.swiper', {
+const swiper = new Swiper(".swiper", {
   // Optional parameters
-  direction: 'horizontal',
-  loop: true,
+  direction: "horizontal",
+
+  speed: 400,
   spaceBetween: 30,
   freeMode: true,
   slidesPerView: 2.5,
@@ -14,10 +14,12 @@ const swiper = new Swiper('.swiper', {
 
   // Navigation arrows
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
-
+  autoplay: {
+    delay: 2000,
+  },
   // And if we need scrollbar
   // scrollbar: {
   //   el: '.swiper-scrollbar',

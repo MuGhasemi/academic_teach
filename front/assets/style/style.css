@@ -532,10 +532,11 @@ main .slider-container {
   display: flex;
   align-items: center;
   padding: 20px;
-  
+
   border-radius: var(--radius) 0 0 var(--radius);
+  margin: 0 !important;
 }
-.swiper-wrapper{
+.swiper-wrapper {
   /* background-color: black; */
 }
 main .slider-text {

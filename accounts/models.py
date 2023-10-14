@@ -26,6 +26,9 @@ class User(AbstractUser):
     def is_teacher(self):
         return self.user_type == 'teacher'
 
+    def __str__(self) -> str:
+        return f'{self.username} - {self.user_type}'
+
 class Student(models.Model):
     user = models.OneToOneField(
         User,
@@ -48,6 +51,8 @@ class Teacher(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='teacher')
+    field = models.CharField(max_length=100)
+    description = models.TextField()
     student_image = models.ImageField(
             upload_to = 'teacher_image/',
             verbose_name="image",

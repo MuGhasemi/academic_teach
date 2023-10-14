@@ -29,7 +29,7 @@ class Lesson(models.Model):
         default=True,)
     is_delete = models.BooleanField(
         default=False,)
-
+    date_created = models.DateTimeField(auto_now_add=True)
     class Meta():
         db_table = 'lesson'
         ordering = ['start_date']

@@ -19,6 +19,14 @@ def generate_info(request):
     }
     return render(request, 'partials/header_content.html', context)
 
+
+def search_box(request):
+    context = {
+        'search': SearchBoxForm()
+    }
+    return render(request, 'partials/search.html', context)
+
+
 class LessonsListView(ListView):
     template_name = 'courses/home.html'
     model = Lesson

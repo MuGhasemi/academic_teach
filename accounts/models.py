@@ -15,7 +15,7 @@ class User(AbstractUser):
     user_type = models.CharField(
         max_length=7,
         choices=USER_TYPE_CHOICES,
-        default='student')
+        default='admin')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]

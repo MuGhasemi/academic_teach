@@ -7,15 +7,25 @@ from accounts.models import User
 from django.db.models import Count
 
 
-def generate_user_info():
-    user_info = {}
+def generate_info(request):
     user = User.objects.aggregate(
                         student_counts=Count('student'),
                         teacher_counts=Count('teacher'))
+    lesson = Lesson.objects.all().count()
+    context = {
+        'student': user['student_counts'],
+        'teacher': user['teacher_counts'],
+        'lesson': lesson
+    }
+    return render(request, 'partials/header_content.html', context)
 
-    user_info['student'] = user['student_counts']
-    user_info['teacher'] = user['teacher_counts']
-    return user_info
+
+def search_box(request):
+    context = {
+        'search': SearchBoxForm()
+    }
+    return render(request, 'partials/search.html', context)
+
 
 class LessonsListView(ListView):
     template_name = 'courses/home.html'
@@ -25,7 +35,6 @@ class LessonsListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search'] = SearchBoxForm()
-        context['count'] = generate_user_info()
         context['slider_contents'] = self.model.objects.order_by('date_created').all()[:5]
         return context
 

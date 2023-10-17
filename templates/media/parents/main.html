@@ -1,3 +1,4 @@
+{% load render_partial %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
   <head>
@@ -7,9 +8,9 @@
   <body>
     {% if not request.path == '/account/login/' and not request.path == '/account/sign-up/' %}
     <header class="container">
-      {% include 'partials/search.html' %}
+      {% render_partial 'courses.views.search_box'  %}
       {% include 'partials/navigation.html' %}
-      {% include 'partials/header_content.html' %}
+      {% render_partial 'courses.views.generate_info'  %}
     </header>
     {% endif %}
     {% block content %}{% endblock %}

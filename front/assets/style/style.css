@@ -536,9 +536,7 @@ main .slider-container {
   border-radius: var(--radius) 0 0 var(--radius);
   margin: 0 !important;
 }
-.swiper-wrapper {
-  /* background-color: black; */
-}
+
 main .slider-text {
   height: 80%;
   width: 13%;
@@ -654,4 +652,79 @@ main .product-card .product-card__content .product-card__price__btn a {
 }
 main .product-card .product-card__content .product-card__price {
   font-family: Vazirmatn700;
+}
+
+/* detail page  */
+.detail-main{
+  margin-top: var(--upper-distance);
+}
+.detail-main__top-side{
+  background-color:var(--primary-color);
+  border-radius: var(--radius);
+  padding:20px;
+  display: flex;
+  filter: var(--shadow-header-filter);
+
+}
+.detail-main__top-side__summary{
+  flex: 1;
+  background-color: var(--primary-white);
+  /* background-color: var(--secondary-color); */
+  margin: 10px;
+  border-radius: var(--radius);
+  padding: 30px;
+
+}
+.detail-main__top-side__summary h3{
+  font-size: 2rem;
+  font-family: Vazirmatn800;
+  color: var(--primary-title);
+  margin: 10px 20px;
+}
+.detail-main__top-side__summary p{
+  font-size: 1.2rem;
+  text-align: justify;
+}
+.detail-main__top-side__summary__icons{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 0;
+  
+}
+.detail-main__top-side__summary__icons div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  width: 100px;
+  height: 110px;
+  border-radius: 50%;
+  filter: var(--shadow-header-filter);
+
+
+}
+.detail-main__top-side__summary__icons div span{
+  color: #fff;
+}
+.detail-main__top-side__summary__icons div span:first-child{
+  font-size: 2rem;
+}
+.detail-main__top-side__summary__icons div span:last-child{
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.detail-main__top-side__summary__badge span{
+  background-color: var(--primary-gray);
+  color: var(--primary-title);
+  padding: 5px 10px;
+  margin: 2px 5px;
+  border-radius: var(--radius);
+}
+.detail-main__top-side__img{
+  flex: 1;
+  width: 100px;
+  border-radius: var(--radius);
+  margin: 10px;
 }

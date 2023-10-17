@@ -6,7 +6,7 @@ const swiper = new Swiper(".swiper", {
   spaceBetween: 30,
   freeMode: true,
   slidesPerView: 2.5,
-
+  
   // If we need pagination
   // pagination: {
   //   el: '.swiper-pagination',

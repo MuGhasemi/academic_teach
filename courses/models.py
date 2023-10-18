@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import Student, Teacher
 from django.utils import timezone
 from django.utils.text import slugify
+from jalali_date import date2jalali
 
 class Lesson(models.Model):
     title = models.CharField(
@@ -42,6 +43,15 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_jalali_date(self):
+        date = {
+            'start_date': date2jalali(self.start_date),
+            'date_created': date2jalali(self.date_created),
+            'registration_start': date2jalali(self.registration_start),
+            'registration_deadline': date2jalali(self.registration_deadline),
+        }
+        return date
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)

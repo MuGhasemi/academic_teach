@@ -747,6 +747,7 @@ main .product-card .product-card__content .product-card__price {
   border-radius: var(--radius);
   padding: 40px;
   margin-left: 30px;
+  height: fit-content;
 }
 .detail-bot-side__desc h3 {
   font-size: 2rem;
@@ -793,7 +794,46 @@ main .product-card .product-card__content .product-card__price {
   border-radius: var(--radius);
   cursor: pointer;
   transition: .2s linear;
+  filter: var(--shadow-header-filter);
 }
 .detail-bot-side__price button:hover{
   background-color: var(--secondary-color);
+}
+.detail-bot-side__teacher{
+  background-color: #fff;
+  margin-top: var(--upper-distance);
+  border-radius: var(--radius);
+  padding: 30px ;
+  filter: var(--shadow-header-filter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.detail-bot-side__teacher .teacher-pic{
+  /* background-color: var(--primary-color); */
+  border: 2px solid var(--primary-color);
+  height: 150px;
+  width: 150px;
+  
+  border-radius: 50%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: var(--shadow-header-filter);
+}
+.detail-bot-side__teacher .teacher-pic img{
+  width: 150px;
+}
+.detail-bot-side__teacher h3{
+  font-size: 2rem;
+  font-family: Vazirmatn800;
+  color: var(--primary-title);
+  margin: 10px 20px;
+}
+.detail-bot-side__teacher p{
+  text-align: center;
 }

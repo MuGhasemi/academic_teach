@@ -10,13 +10,19 @@ class Lesson(models.Model):
         db_index = True,)
     description = models.TextField()
     slug = models.SlugField(
+        editable=False,
         unique=True,
         blank=True)
     teacher = models.ForeignKey(
         Teacher,
         on_delete=models.PROTECT,
         related_name='lessons',)
-    start_date = models.DateField(default=timezone.now)
+    date_created = models.DateField(auto_now_add=True,)
+    registration_start = models.DateField(
+        default = timezone.now() + timezone.timedelta(days=3),)
+    registration_deadline = models.DateField(
+        default = timezone.now() - timezone.timedelta(days=3),)
+    start_date = models.DateField(default=timezone.now,)
     price = models.PositiveIntegerField(default=0)
     capacity = models.PositiveSmallIntegerField(default=20,)
     number_of_sessions = models.PositiveSmallIntegerField(default=10,)
@@ -24,12 +30,12 @@ class Lesson(models.Model):
     lesson_image = models.ImageField(
         upload_to='lesson_image/',
         blank=True,
-        null = True,)
+        null=True,)
     is_active = models.BooleanField(
         default=True,)
     is_delete = models.BooleanField(
         default=False,)
-    date_created = models.DateTimeField(auto_now_add=True)
+
     class Meta():
         db_table = 'lesson'
         ordering = ['start_date']
@@ -38,8 +44,7 @@ class Lesson(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
+        self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
 
 

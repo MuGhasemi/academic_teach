@@ -53,7 +53,7 @@ class Teacher(models.Model):
         related_name='teacher')
     field = models.CharField(max_length=100)
     description = models.TextField()
-    student_image = models.ImageField(
+    teacher_image = models.ImageField(
             upload_to = 'teacher_image/',
             verbose_name="image",
             null = True,

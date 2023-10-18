@@ -31,7 +31,7 @@
       
               <div class="product-card__content__line"></div>
               <div class="product-card__price__btn">
-                <a href="">ثبت نام </a>
+                <a href="{{ lesson.get_absolute_url }}">ثبت نام </a>
                 <div class="product-card__price">
                   {% if lesson.price == 0 %}
                   <span>رایگان</span>
@@ -50,7 +50,7 @@
       <div class="swiper-button-next"></div>
     </div>
 
-    <div class="slider-text">test</div>
+    <div class="slider-text"><p>{% lorem 20 w random %}</p></div>
   </div>
 
   <div class="cures-list container">
@@ -79,7 +79,7 @@
 
         <div class="product-card__content__line"></div>
         <div class="product-card__price__btn">
-          <a href="">ثبت نام </a>
+          <a href="{{ lesson.get_absolute_url }}">ثبت نام </a>
           <div class="product-card__price">
             {% if lesson.price == 0 %}
             <span>رایگان</span>

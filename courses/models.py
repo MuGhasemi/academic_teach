@@ -23,7 +23,8 @@ class Lesson(models.Model):
         default = timezone.now() + timezone.timedelta(days=3),)
     registration_deadline = models.DateField(
         default = timezone.now() - timezone.timedelta(days=3),)
-    start_date = models.DateField(default=timezone.now,)
+    start_date = models.DateField(
+        default = timezone.now() + timezone.timedelta(days=9),)
     price = models.PositiveIntegerField(default=0)
     capacity = models.PositiveSmallIntegerField(default=20,)
     number_of_sessions = models.PositiveSmallIntegerField(default=10,)

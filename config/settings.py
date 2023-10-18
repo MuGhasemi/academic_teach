@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'courses.apps.CoursesConfig',
     'django_render_partial',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

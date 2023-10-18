@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from accounts.models import Student, Teacher
 from django.utils import timezone
 from django.utils.text import slugify
@@ -53,6 +54,9 @@ class Lesson(models.Model):
             'registration_deadline': date2jalali(self.registration_deadline),
         }
         return date
+
+    def get_absolute_url(self):
+        return reverse('courses:lesson_detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)

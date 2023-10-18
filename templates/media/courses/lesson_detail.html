@@ -1,0 +1,73 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}Detail{% endblock %}
+{% block content %}
+<div class="detail-main container">
+    <div class="detail-main__top-side">
+      <div class="detail-main__top-side__summary">
+        <h3>{{ lesson.title }}</h3>
+        <p>
+            {{ lesson.description|truncatechars:150 }}
+        </p>
+        <div class="detail-main__top-side__summary__icons">
+          <div class="detail-main__top-side__summary__icons__session">
+            <span class="material-symbols-outlined"> chart_data </span>
+            <span>{{ lesson.number_of_sessions }}</span>
+          </div>
+          <div class="detail-main__top-side__summary__icons__students">
+            <span class="material-symbols-outlined"> groups </span>
+            <span>{{ lesson.student }}</span>
+          </div>
+        </div>
+        <div class="detail-main__top-side__summary__badge">
+          <span>تاریخ انتشار: {{ lesson.get_jalali_date.date_created }}</span>
+          <span>تاریخ شروع: {{ lesson.get_jalali_date.start_date }}</span>
+        </div>
+      </div>
+      {% thumbnail lesson.lesson_image "5472x3648" crop='center' as im %}
+      <img
+        src="{{ im.url }}"
+        class="detail-main__top-side__img"
+        alt=""
+      />
+      {% empty %}
+      <img
+      src="{% static 'assets/img/picture/lesson.jpg' %}"
+      class="detail-main__top-side__img"
+      alt=""
+      />
+      {% endthumbnail %}
+    </div>
+    <div class="detail-bot-side">
+      <div class="detail-bot-side__desc">
+        <h3>{{ lesson.title }}</h3>
+        <p>
+            {{ lesson.description }}
+        </p>
+      </div>
+      <div class="detail-bot-side__price-teacher">
+        <div class="detail-bot-side__price">
+          <div class="price">
+            {% if lesson.price == 0 %}
+            <span>رایگان</span>
+            {% else %}
+            <span>{{ lesson.price }}</span>
+            <span>تومان</span>
+            {% endif %}
+          <form action="">
+            <button>ثبت نام</button>
+          </form>
+        </div>
+        <div class="detail-bot-side__teacher">
+          <img src="" class="teacher-pic" alt="" />
+          <h3 class="teacher-name">{{ lesson.teacher }}</h3>
+          <p class="teacher-desc">
+            {{ lesson.teacher.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<br><br><br><br><br>
+{% endblock %}

@@ -34,8 +34,7 @@ class LessonsListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['search'] = SearchBoxForm()
-        context['slider_contents'] = self.model.objects.order_by('date_created').all()[:5]
+        context['slider_contents'] = self.model.objects.order_by('-date_created').all()[:5]
         return context
 
     def get_queryset(self):

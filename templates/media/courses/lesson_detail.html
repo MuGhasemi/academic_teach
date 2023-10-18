@@ -55,14 +55,27 @@
             <span>{{ lesson.price }}</span>
             <span>تومان</span>
             {% endif %}
+          </div>
           <form action="">
             <button>ثبت نام</button>
           </form>
         </div>
         <div class="detail-bot-side__teacher">
-          <img src="" class="teacher-pic" alt="" />
-          <h3 class="teacher-name">{{ lesson.teacher }}</h3>
-          <p class="teacher-desc">
+          <div class="teacher-pic">
+            {% thumbnail lesson.teacher.teacher_image "2048x2048" crop='center' as im %}
+            <img
+              src="{% static 'assets/img/picture/userProfile.png' %}"
+              alt=""
+            />
+            {% empty %}
+            <img
+              src="{% static 'assets/img/picture/userProfile.png' %}"
+              alt=""
+            />
+            {% endthumbnail %}
+          </div>
+          <h3>{{ lesson.teacher }}</h3>
+          <p>
             {{ lesson.teacher.description }}
           </p>
         </div>

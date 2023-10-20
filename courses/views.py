@@ -5,13 +5,14 @@ from .forms import SearchBoxForm
 from django.db.models import Q
 from accounts.models import User
 from django.db.models import Count
+from django.http import Http404
 
 
 def generate_info(request):
     user = User.objects.aggregate(
                         student_counts=Count('student'),
                         teacher_counts=Count('teacher'))
-    lesson = Lesson.objects.all().count()
+    lesson = Lesson.objects.filter(is_active=True).count()
     context = {
         'student': user['student_counts'],
         'teacher': user['teacher_counts'],
@@ -29,12 +30,12 @@ def search_box(request):
 
 class LessonsListView(ListView):
     template_name = 'courses/home.html'
-    model = Lesson
+    queryset = Lesson.objects.filter(is_active=True)
     context_object_name = 'lessons'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['slider_contents'] = self.model.objects.order_by('-date_created').all()[:5]
+        context['slider_contents'] = self.queryset.order_by('-date_created').all()[:5]
         return context
 
     def get_queryset(self):
@@ -45,12 +46,10 @@ class LessonsListView(ListView):
                 Q(title__icontains = search) |
                 Q(teacher__user__username__icontains = search)
             )
-            if queryset.count() == 0:
-                print('Not Found!')
         return queryset
 
 class LessonDetailView(DetailView):
-    model = Lesson
+    queryset = Lesson.objects.filter(is_active=True)
     template_name = 'courses/lesson_detail.html'
     context_object_name = 'lesson'
 

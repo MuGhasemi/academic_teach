@@ -34,6 +34,7 @@ class Student(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='student')
+    credit  = models.PositiveIntegerField(default=0,)
     student_image = models.ImageField(
             upload_to = 'student_image/',
             verbose_name="image",

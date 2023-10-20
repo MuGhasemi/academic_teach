@@ -13,7 +13,7 @@
               <div class="product-card__count">
                 <!-- FIXME - Add icon -->
                 <span class="material-symbols-outlined"> person </span>
-                <span>100</span>
+                <span>{{ lesson.get_remaining_capacity }}</span>
               </div>
             </div>
             <div class="product-card__content">
@@ -61,7 +61,7 @@
         <div class="product-card__count">
           <!-- FIXME - Add icon -->
           <span class="material-symbols-outlined"> person </span>
-          <span>100</span>
+          <span>{{ lesson.get_remaining_capacity }}</span>
         </div>
       </div>
       <div class="product-card__content">

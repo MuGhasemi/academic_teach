@@ -58,6 +58,14 @@ class Lesson(models.Model):
     def get_absolute_url(self):
         return reverse('courses:lesson_detail', kwargs={'slug': self.slug})
 
+    def get_remaining_capacity(self):
+        enrolled_students = self.enrollments.count()
+        remaining_capacity = self.capacity - enrolled_students
+        if remaining_capacity == 0:
+            self.is_active = False
+            self.save()
+        return remaining_capacity
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)

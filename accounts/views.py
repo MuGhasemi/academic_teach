@@ -10,6 +10,9 @@ class LoginView(View):
     form_class = LoginUserForm
 
     def get(self, request):
+        if request.user.is_authenticated:
+            # TODO - create message for you are login
+            return redirect(LOGIN_REDIRECT_URL)
         context = {'form': self.form_class}
         return render(request, self.template_name, context)
 
@@ -37,6 +40,9 @@ class RegisterView(View):
     form_class = RegisterUserForm
 
     def get(self, request):
+        if request.user.is_authenticated:
+            # TODO - create message for you are login
+            return redirect(LOGIN_REDIRECT_URL)
         context = {'form': self.form_class}
         return render(request, self.template_name, context)
 

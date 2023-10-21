@@ -762,7 +762,7 @@ main .product-card .product-card__content .product-card__price {
 .detail-bot-side__price-teacher {
   width: 300px;
 }
-.detail-bot-side__price{
+.detail-bot-side__price {
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -771,18 +771,14 @@ main .product-card .product-card__content .product-card__price {
   padding: 30px 10px;
   border-radius: var(--radius);
   filter: var(--shadow-header-filter);
-
 }
-.detail-bot-side__price .price{
+.detail-bot-side__price .price {
   font-size: 1.7rem;
-  
-  
 }
-.detail-bot-side__price .price span:last-child{
+.detail-bot-side__price .price span:last-child {
   font-family: Vazirmatn900;
 }
-.detail-bot-side__price button{
-  
+.detail-bot-side__price button {
   outline: none;
   font-size: 1.3rem;
   border: none;
@@ -793,30 +789,29 @@ main .product-card .product-card__content .product-card__price {
   margin-top: 20px;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: .2s linear;
+  transition: 0.2s linear;
   filter: var(--shadow-header-filter);
 }
-.detail-bot-side__price button:hover{
+.detail-bot-side__price button:hover {
   background-color: var(--secondary-color);
 }
-.detail-bot-side__teacher{
+.detail-bot-side__teacher {
   background-color: #fff;
   margin-top: var(--upper-distance);
   border-radius: var(--radius);
-  padding: 30px ;
+  padding: 30px;
   filter: var(--shadow-header-filter);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
-.detail-bot-side__teacher .teacher-pic{
+.detail-bot-side__teacher .teacher-pic {
   /* background-color: var(--primary-color); */
   border: 2px solid var(--primary-color);
   height: 150px;
   width: 150px;
-  
+
   border-radius: 50%;
   margin-bottom: 10px;
   overflow: hidden;
@@ -825,15 +820,211 @@ main .product-card .product-card__content .product-card__price {
   justify-content: center;
   filter: var(--shadow-header-filter);
 }
-.detail-bot-side__teacher .teacher-pic img{
+.detail-bot-side__teacher .teacher-pic img {
   width: 150px;
 }
-.detail-bot-side__teacher h3{
+.detail-bot-side__teacher h3 {
   font-size: 2rem;
   font-family: Vazirmatn800;
   color: var(--primary-title);
   margin: 10px 20px;
 }
-.detail-bot-side__teacher p{
+.detail-bot-side__teacher p {
   text-align: center;
+}
+
+
+/* profile  */
+
+.profile-to-show {
+  margin-top: 100px;
+  background-color: #ffffff;
+  padding: 40px 80px;
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1000px;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  background-color: #f1f1f1;
+  margin-bottom: 40px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.055);
+  border: var(--border-blue);
+}
+.profile-toshow-form {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px 50px;
+  font-size: 1.3rem;
+  font-family: Vazirmatn500;
+}
+.profile-toshow-form input {
+  outline: none;
+  width: 350px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: var(--border-blue);
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.profile-toshow-form input:disabled {
+  background-color: transparent;
+  border: none;
+}
+.change-profile-img {
+  visibility: hidden;
+}
+.profile-img {
+  border: none !important;
+  background-color: transparent !important;
+  height: 50px !important;
+}
+
+.profile-img::-webkit-file-upload-button {
+  border: var(--border-blue);
+  padding: 5px 20px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: var(--primary-color);
+  display: inline-block;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.delete-img {
+  text-decoration: none;
+  font-family: Vazirmatn300;
+  border: 1px solid var(--primary-red);
+  color: var(--primary-red);
+  padding: 3px 15px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.profile-edit-btns {
+  display: flex;
+  justify-content: space-evenly;
+  width: 500px;
+  margin: auto;
+}
+.profile-edit-btns button {
+  margin-top: 30px;
+  padding: 8px 30px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: var(--border-blue);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.profile-edit-btns button:hover {
+  background-color: var(--hover-blue);
+}
+.profile-edit-btns button[class="profile-edit-cancel-btn"] {
+  background-color: #fff;
+  color: var(--primary-red);
+  border: 1px solid var(--primary-red);
+}
+.profile-edit-btns button[class="profile-edit-cancel-btn"]:hover {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.profile-edit-done-btn {
+  display: none;
+}
+.profile-edit-cancel-btn {
+  display: none;
+}
+
+
+/* instans  */
+
+/* instans page  */
+.instans {
+  max-width: 1170px;
+  width: 100%;
+  margin: 30px auto;
+}
+.instans h3 {
+  text-align: center;
+  font-family: Vazirmatn500;
+  font-size: 1.2rem;
+}
+.instans-books {
+  width: 100%;
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.ins-book {
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: var(--shadow-product);
+  filter: var(--shadow-header-filter);
+}
+.ins-book-img {
+  width: 130px;
+  height: 100%;
+  margin-left: 10px;
+  overflow: hidden;
+}
+.ins-book-img > img {
+  width: 100%;
+  height: 100%;
+}
+.ins-book-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.ins-book-detail h4 {
+  font-size: 1.7rem;
+  font-family: Vazirmatn500;
+}
+.ins-aut {
+  text-align: center;
+  min-width: 90px;
+  max-width: 120px;
+  height: 35px;
+  border-radius: 8px;
+  background-color: var(--primary-red);
+  color: #fff;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 35px;
+  overflow: hidden;
+}
+.ins-gen {
+  text-align: center;
+  min-width: 90px;
+  max-width: 120px;
+  height: 35px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: #fff;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 35px;
+  overflow: hidden;
 }

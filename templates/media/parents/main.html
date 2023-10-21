@@ -10,7 +10,9 @@
     <header class="container">
       {% render_partial 'courses.views.search_box'  %}
       {% include 'partials/navigation.html' %}
+      {% if not request.path == '/account/profile/' %}
       {% render_partial 'courses.views.generate_info'  %}
+      {% endif %}
     </header>
     {% endif %}
     {% block content %}{% endblock %}

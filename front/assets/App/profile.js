@@ -5,14 +5,14 @@ const changeIMG = document.querySelector(".change-profile-img");
 
 const userLastName = document.querySelector("#profileLastNameInput");
 const userName = document.querySelector("#profileNameInput");
-const userEmail = document.querySelector("#profileEmailInput");
+
 
 function editFun(e) {
     e.preventDefault();
     doneBTN.style.display = "block";
     cancelBTN.style.display = "block";
     changeIMG.style.visibility = "visible";
-    userEmail.removeAttribute("disabled");
+    
     userName.removeAttribute("disabled");
     userLastName.removeAttribute("disabled");
 

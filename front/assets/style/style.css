@@ -846,7 +846,7 @@ main .product-card .product-card__content .product-card__price {
   flex-direction: column;
   justify-content: center;
   max-width: 1000px;
-  border-radius: 60px;
+  border-radius: 20px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
@@ -949,3 +949,5 @@ main .product-card .product-card__content .product-card__price {
 .profile-edit-cancel-btn {
   display: none;
 }
+
+

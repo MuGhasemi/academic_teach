@@ -1,0 +1,50 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <main class="profile-to-show ">
+        {% thumbnail request.user.student.student_image "150x150" crop='center' as im %}
+        <img
+            src="{{ im.url }}"
+            alt=""
+            class="profile-photo"
+        />
+        {% empty %}
+        <img
+            src="{% static 'assets/img/picture/user_profile.png' %}"
+            alt=""
+            class="profile-photo"
+        />
+        {% endthumbnail %}
+        <form action="" method="post" class="profile-toshow-form" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <table class="profile-table">
+                <tr>
+                    <td><label for="">نام:</label></td>
+                    <td>{{ user_form.first_name }}</td> 
+                </tr>
+                <tr>
+                    <td><label for="">نام خانوادگی:</label></td>
+                    <td>{{ user_form.last_name }}</td> 
+                </tr>
+                
+                <tr class="change-profile-img">
+                    <td><label for="">عکس پروفایل:</label></td>
+                    <td class="change-profile-img-input">
+                        {{ std_form.student_image }}
+                        <a href="{% url 'accounts:delete_photo' %}" class="delete-img">حذف عکس</a>
+                    </td>
+                </tr>
+            </table>
+            <div class="profile-edit-btns">
+                <button class="profile-edit-edit-btn">ویرایش</button>
+                <button class="profile-edit-done-btn">اعمال تغییرات</button>
+                <button class="profile-edit-cancel-btn" id="cancel">لغو</button>
+            </div>
+        </form>
+    </main>
+
+    <script type="module" src="{% static 'assets/App/profile.js' %}"></script>
+{% endblock %}

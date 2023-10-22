@@ -1,4 +1,7 @@
 from django import forms
+from .models import Student, User
+from django.contrib.auth.forms import UserChangeForm
+from django.forms import ImageField, FileInput
 
 
 class LoginUserForm(forms.Form):
@@ -57,3 +60,28 @@ class RegisterUserForm(forms.Form):
             attrs={
                 'placeholder': 'ایمیل',
                 'id':'sinEmail',}))
+
+class EditStudentForm(forms.ModelForm):
+    student_image= ImageField(widget=FileInput(attrs={
+        'id':'profile-img',
+    }))
+    class Meta:
+        model = Student
+        fields = ('student_image',)
+        widgets = {
+            'profileImage': FileInput(attrs={
+                'accept': '.jpg,.jpeg,.png,.PNG,.JPG,.JPEG',
+                })}
+
+class EditUserForm(UserChangeForm):
+    class Meta():
+        model = User
+        fields =(
+            'first_name',
+            'last_name')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'disabled': 'disabled',
+                                                'id': 'profileNameInput',}),
+            'last_name': forms.TextInput(attrs={'disabled': 'disabled',
+                                                'id': 'profileLastNameInput',}),}
+    password = None

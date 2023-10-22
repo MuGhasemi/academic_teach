@@ -1,0 +1,54 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}Add Lesson{% endblock %}
+{% block content %}
+<h3 style="margin-top: var(--upper-distance); font-size: 1.5rem">
+    اضافه کردن درس
+</h3>
+<main class="add-course container">
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td><label for="c-name">نام درس:</label></td>
+            <td>{{ form.title }}</td>
+            <td><label for="teacher-name">استاد:</label></td>
+            <td>{{ form.teacher }}</td>
+        </tr>
+        <tr>
+            <td><label for="capacity">ظرفیت:</label></td>
+            <td>{{ form.capacity }}</td>
+            <td><label for="sessions">تعداد جلسات:</label></td>
+            <td>{{ form.number_of_sessions }}</td>
+        </tr>
+        <tr>
+            <td><label for="reg-start-date">تاریخ شروع ثبت نام:</label></td>
+            <td>{{ form.registration_start }}</td>
+            <td><label for="reg-end-date">تاریخ پایان ثبت نام:</label></td>
+            <td>{{ form.registration_deadline }}</td>
+        </tr>
+        <tr>
+            <td><label for="start-class-date">تاریخ شروع کلاس:</label></td>
+            <td>{{ form.start_date }}</td>
+            <td><label for="c-price">قیمت :</label></td>
+            <td>{{ form.price }}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><label for="c-desc">توضیحات دوره:</label></td>
+            <td colspan="2">{{ form.description }}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><label for="c-img">عکس دوره</label></td>
+            <td colspan="2">{{ form.lesson_image }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+            <button type="submit">ثبت</button>
+            <button type="reset">لغو</button>
+            </td>
+        </tr>
+        </table>
+    </form>
+</main>
+{% endblock %}

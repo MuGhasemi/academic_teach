@@ -1,12 +1,14 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
+from config.settings import LOGIN_REDIRECT_URL
 from .models import Lesson
-from .forms import SearchBoxForm
+from .forms import SearchBoxForm, LessonCreateForm
 from django.db.models import Q
 from accounts.models import User
 from django.db.models import Count
-from django.http import Http404
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 def generate_info(request):
     user = User.objects.aggregate(
@@ -60,3 +62,26 @@ class LessonDetailView(DetailView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset
+
+@method_decorator(login_required, name='dispatch')
+class LessonCreateView(CreateView):
+    model = Lesson
+    form_class = LessonCreateForm
+    template_name = 'courses/lesson_create.html'
+    success_url = reverse_lazy('courses:home')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            # TODO - sweetify.toast(request, 'You do not have permission to access this page.', 'error')
+            return redirect(LOGIN_REDIRECT_URL)
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        # TODO - sweetify.toast(self.request, 'Book add failed.', 'error')
+        return response
+

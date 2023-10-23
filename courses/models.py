@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.db import models
 from django.urls import reverse
 from accounts.models import Student, Teacher
@@ -23,7 +24,7 @@ class Lesson(models.Model):
     registration_start = models.DateField(
         default = timezone.now() + timezone.timedelta(days=3),)
     registration_deadline = models.DateField(
-        default = timezone.now() - timezone.timedelta(days=3),)
+        default = timezone.now() + timezone.timedelta(days=6),)
     start_date = models.DateField(
         default = timezone.now() + timezone.timedelta(days=9),)
     price = models.PositiveIntegerField(default=0)
@@ -52,8 +53,19 @@ class Lesson(models.Model):
             'date_created': date2jalali(self.date_created),
             'registration_start': date2jalali(self.registration_start),
             'registration_deadline': date2jalali(self.registration_deadline),
+            'end_date': date2jalali(self.get_end_date())
         }
         return date
+
+    def get_end_date(self):
+        duration = timedelta(weeks=(self.number_of_sessions / self.days_of_week))
+        end_date = self.start_date + duration
+
+        days_offset = (self.days_of_week - 1) % 7
+        print(days_offset)
+        end_date += timedelta(days=days_offset)
+
+        return end_date
 
     def get_absolute_url(self):
         return reverse('courses:lesson_detail', kwargs={'slug': self.slug})

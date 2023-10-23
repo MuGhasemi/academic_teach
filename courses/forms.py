@@ -10,7 +10,7 @@ class SearchBoxForm(forms.Form):
         max_length=100,
         required = False,)
 
-class LessonCreateForm(forms.ModelForm):
+class LessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
         fields = (
@@ -55,4 +55,3 @@ class LessonCreateForm(forms.ModelForm):
                 'accept': '.jpg,.jpeg,.png,.PNG,.JPG,.JPEG',
                 'class':'add-Cou-img'
             })}
-

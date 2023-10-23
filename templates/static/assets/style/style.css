@@ -833,7 +833,6 @@ main .product-card .product-card__content .product-card__price {
   text-align: center;
 }
 
-
 /* profile  */
 
 .profile-to-show {
@@ -950,7 +949,6 @@ main .product-card .product-card__content .product-card__price {
   display: none;
 }
 
-
 /* instans  */
 
 /* instans page  */
@@ -1027,4 +1025,84 @@ main .product-card .product-card__content .product-card__price {
   font-size: 1rem;
   line-height: 35px;
   overflow: hidden;
+}
+
+/* add courses  */
+
+.add-course {
+  padding: 10px;
+  background-color: #fff;
+  margin-top: var(--upper-distance);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-course table td {
+  /* margin: 10px; */
+  /* background-color: blueviolet; */
+  padding: 15px 15px;
+  vertical-align: middle;
+}
+.add-course table input {
+  padding: 5px 10px;
+}
+.add-course table td input,
+textarea,
+select {
+  font-family: inherit;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  outline: none;
+  resize: none;
+}
+.add-course table td input[type="text"],
+.add-course table td input[type="number"],
+.add-course table td input[type="date"] {
+  width: 150px;
+}
+
+.add-course table td select {
+  width: 70px;
+  padding: 5px 10px;
+}
+
+.add-Cou-img::-webkit-file-upload-button {
+  border: var(--border-blue);
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+
+.add-course table tr:last-child td {
+  /* background-color: chocolate; */
+  text-align: center;
+}
+.add-course table tr:last-child td button {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-family: Vazirmatn700;
+  padding: 8px 45px;
+  border-radius: var(--radius);
+  font-size: 1.3rem;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+.add-course table tr:last-child td button:hover{
+  background-color: var(--hover-blue);
+}
+.add-course table tr:last-child td button:last-child{
+  background-color: var(--primary-red);
+}
+.add-course table tr:last-child td button:last-child:hover{
+  background-color: var(--primary-red-hover);
 }

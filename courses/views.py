@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from config.settings import LOGIN_REDIRECT_URL
-from .models import Lesson
+from .models import Lesson, Enrollment
 from .forms import SearchBoxForm, LessonCreateForm
 from django.db.models import Q
 from accounts.models import User
@@ -84,4 +84,14 @@ class LessonCreateView(CreateView):
         response = super().form_invalid(form)
         # TODO - sweetify.toast(self.request, 'Book add failed.', 'error')
         return response
+
+
+@method_decorator(login_required, name='dispatch')
+class StudentLessonsView(ListView):
+    template_name = 'courses/student_list.html'
+    context_object_name = 'enrollments'
+
+    def get_queryset(self):
+        queryset = Enrollment.objects.filter(student=self.request.user.student)
+        return queryset
 

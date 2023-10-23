@@ -1,9 +1,10 @@
+import os
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from config.settings import LOGIN_REDIRECT_URL
 from .models import Lesson, Enrollment
-from .forms import SearchBoxForm, LessonCreateForm
+from .forms import SearchBoxForm, LessonForm
 from django.db.models import Q
 from accounts.models import User
 from django.db.models import Count
@@ -66,7 +67,7 @@ class LessonDetailView(DetailView):
 @method_decorator(login_required, name='dispatch')
 class LessonCreateView(CreateView):
     model = Lesson
-    form_class = LessonCreateForm
+    form_class = LessonForm
     template_name = 'courses/lesson_create.html'
     success_url = reverse_lazy('courses:home')
 
@@ -95,3 +96,36 @@ class StudentLessonsView(ListView):
         queryset = Enrollment.objects.filter(student=self.request.user.student)
         return queryset
 
+
+@method_decorator(login_required, name='dispatch')
+class LessonUpdateView(UpdateView):
+    model = Lesson
+    form_class = LessonForm
+    template_name = 'courses/lesson_update.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            # TODO - sweetify.toast(request, 'You do not have permission to access this page.', 'error')
+            return redirect(LOGIN_REDIRECT_URL)
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        lesson = Lesson.objects.get(id=form.instance.id)
+        old_photo_name = None
+        if lesson.lesson_image.name:
+            old_photo_path = lesson.lesson_image.path
+            old_photo_name = (lesson.lesson_image.name).split('/')[1]
+        new_book_image = self.request.FILES.get('lesson_image')
+        if new_book_image and new_book_image.name != old_photo_name:
+            lesson.lesson_image = new_book_image
+            if old_photo_name:
+                os.remove(old_photo_path)
+        else:
+            form.cleaned_data['lesson_image'] = None
+        # TODO - sweetify.toast(self.request, 'Book edit successfully.', 'success')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        # TODO - sweetify.toast(self.request, 'Book edit failed.', 'error')
+        return response

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_render_partial',
     'sorl.thumbnail',
     'jalali_date',
+    'sweetify',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,5 @@ JALALI_DATE_DEFAULTS = {
         }
     },
 }
+
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'

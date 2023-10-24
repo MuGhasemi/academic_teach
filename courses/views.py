@@ -1,3 +1,4 @@
+import sweetify
 import os
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -73,17 +74,18 @@ class LessonCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_staff:
-            # TODO - sweetify.toast(request, 'You do not have permission to access this page.', 'error')
+            sweetify.toast(request, 'شما اجازه دسترسی به این صفحه را ندارید!', 'error')
             return redirect(LOGIN_REDIRECT_URL)
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
+        sweetify.toast(self.request, 'درس با موفقیت اضافه شد.', 'success')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         response = super().form_invalid(form)
-        # TODO - sweetify.toast(self.request, 'Book add failed.', 'error')
+        sweetify.toast(self.request, 'درس اضافه نشد!', 'error')
         return response
 
 
@@ -105,7 +107,7 @@ class LessonUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_staff:
-            # TODO - sweetify.toast(request, 'You do not have permission to access this page.', 'error')
+            sweetify.toast(request, 'شما اجازه دسترسی به این صفحه را ندارید!', 'error')
             return redirect(LOGIN_REDIRECT_URL)
         return super().dispatch(request, *args, **kwargs)
 
@@ -122,10 +124,10 @@ class LessonUpdateView(UpdateView):
                 os.remove(old_photo_path)
         else:
             form.cleaned_data['lesson_image'] = None
-        # TODO - sweetify.toast(self.request, 'Book edit successfully.', 'success')
+        sweetify.toast(self.request, 'ویرایش درس با موفقیت انجام شد.', 'success')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         response = super().form_invalid(form)
-        # TODO - sweetify.toast(self.request, 'Book edit failed.', 'error')
+        sweetify.toast(self.request, 'ویرایش درس ناموفق بود!', 'error')
         return response

@@ -1,4 +1,5 @@
 import os
+import sweetify
 from django.shortcuts import redirect, render
 from django.views import View
 from .forms import LoginUserForm, RegisterUserForm, EditUserForm, EditStudentForm
@@ -14,7 +15,7 @@ class LoginView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            # TODO - create message for you are login
+            sweetify.toast(request, 'شما وارد شده اید.', 'success')
             return redirect(LOGIN_REDIRECT_URL)
         context = {'form': self.form_class}
         return render(request, self.template_name, context)
@@ -28,12 +29,11 @@ class LoginView(View):
                                 password=cd['password'])
             if user is not None:
                 login(request, user)
-                # TODO - create message for login successfully
+                sweetify.toast(request, 'با موفقیت وارد شوید.', 'success')
                 if request.GET.get('next'):
                     return redirect(request.GET.get('next'))
                 return redirect(LOGIN_REDIRECT_URL)
-            # TODO - create message for login failed
-        # TODO - create message for login failed
+        sweetify.toast(request, 'ورود ناموفق بود!', 'error')
         return redirect(LOGIN_URL)
 
 
@@ -44,7 +44,7 @@ class RegisterView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            # TODO - create message for you are login
+            sweetify.toast(request, 'شما وارد شده اید.', 'success')
             return redirect(LOGIN_REDIRECT_URL)
         context = {'form': self.form_class}
         return render(request, self.template_name, context)
@@ -64,16 +64,17 @@ class RegisterView(View):
                 user.set_password(cd['confirm_password'])
                 user.save()
                 Student.objects.create(user=user, student_image=None)
-                # TODO - create message for register successfully
+                sweetify.toast(request, 'حساب با موفقیت ایجاد شد.', 'success')
                 return redirect(LOGIN_URL)
-            # TODO - create message for password does not match
+            sweetify.toast(request, 'رمز عبور مطابقت ندارد!', 'error')
             return redirect(SIGN_UP_URL)
-        # TODO - create message for register failed
+        sweetify.toast(request, 'ایجاد حساب ناموفق بود!', 'error')
         return redirect(SIGN_UP_URL)
 
 def LogoutView(request):
+    _ = request.user.username
     logout(request)
-    # TODO - create message for logout user
+    sweetify.toast(request, f'{ _ }, از اینکه از سایت ما دیدن کردید، سپاسگذاریم.', 'success')
     return redirect(LOGIN_REDIRECT_URL)
 
 @method_decorator(login_required, name='dispatch')
@@ -95,6 +96,9 @@ class ProfileUser(View):
             old_photo_name = request.user.student.student_image.name
         edit_user = self.form_class(request.POST, instance = request.user)
         edit_std = EditStudentForm(request.POST, request.FILES, instance = request.user.student)
+        if not edit_std.is_valid() and not edit_user.is_valid():
+            sweetify.toast(request, 'ویرایش انجام نشد.', 'error')
+            return redirect('/account/profile/')
         if edit_std.is_valid():
             new_profile_image = edit_std.cleaned_data.get('student_image')
             if new_profile_image and new_profile_image.name != old_photo_name:
@@ -105,10 +109,7 @@ class ProfileUser(View):
             edit_std.save()
         if edit_user.is_valid():
             edit_user.save()
-            # TODO - sweetify.toast(request, 'Edit successfully', 'success')
-        else:
-            # TODO - sweetify.toast(request, 'Edit failed', 'warning')
-            pass
+        sweetify.toast(request, 'ویرایش با موفقیت انجام شد.', 'success')
         return redirect('/account/profile/')
 
 
@@ -120,11 +121,8 @@ def delete_photo(request):
             std_image.student_image.delete()
             std_image.student_image = None
             std_image.save()
-            # TODO - sweetify.toast(request, 'image profile deleted', 'success')
-            return redirect('/account/profile/')
-        else:
-            # TODO - sweetify.toast(request, "don't have image profile", 'error')
-            return redirect('/account/profile/')
+            sweetify.toast(request, 'تصویر پروفایل حذف شد.', 'success')
+        return redirect('/account/profile/')
     else:
-        # TODO - sweetify.toast(request, 'remove image profile failed', 'error')
+        sweetify.toast(request, 'حذف تصویر پروفایل انجام نشد!', 'error')
         return redirect('/account/profile/')

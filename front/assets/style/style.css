@@ -1097,12 +1097,97 @@ select {
   cursor: pointer;
   transition: 0.2s linear;
 }
-.add-course table tr:last-child td button:hover{
+.add-course table tr:last-child td button:hover {
   background-color: var(--hover-blue);
 }
-.add-course table tr:last-child td button:last-child{
+.add-course table tr:last-child td button:last-child {
   background-color: var(--primary-red);
 }
-.add-course table tr:last-child td button:last-child:hover{
+.add-course table tr:last-child td button:last-child:hover {
+  background-color: var(--primary-red-hover);
+}
+
+/* credit card  */
+
+.credit__container {
+  background-color: var(--primary-color);
+  position: relative;
+  height: 100px;
+  margin-top: var(--upper-distance);
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  filter: var(--shadow-header-filter);
+}
+.credit__container__details {
+  position: absolute;
+  top: 40px;
+  width: 80%;
+  border-radius: var(--radius);
+  padding: 40px;
+  background-color: var(--secondary-color);
+}
+.credit__container__details form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+.credit__container__details form > div {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius);
+  font-size: 1.8rem;
+}
+.credit__now {
+  grid-area: 1 / 1 / 2 / 4;
+  font-family: Vazirmatn700;
+
+  padding: 40px;
+}
+.credit__how-much {
+  grid-area: 2 / 1 / 3 / 3;
+  font-size: 1.3rem !important;
+}
+.credit__how-much input {
+  font-family: inherit;
+  margin: 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: inherit;
+  width: 200px;
+  text-align: center;
+}
+.credit__increase {
+  grid-area: 2 / 3 / 3 / 4;
+  flex-direction: column;
+  font-size: 1.3rem !important;
+  padding: 30px;
+}
+.credit__increase div {
+  margin-bottom: 10px;
+}
+.credit__increase__btns button {
+  margin-top: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.credit__increase__btns button:hover {
+  background-color: var(--hover-blue);
+}
+.credit__increase__btns button:last-child {
+  background-color: var(--primary-red);
+}
+.credit__increase__btns button:last-child:hover {
   background-color: var(--primary-red-hover);
 }

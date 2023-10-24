@@ -34,7 +34,9 @@
                     <td><label for="">عکس پروفایل:</label></td>
                     <td class="change-profile-img-input">
                         {{ std_form.student_image }}
+                        {% if request.user.student.student_image %}
                         <a href="{% url 'accounts:delete_photo' %}" class="delete-img">حذف عکس</a>
+                        {% endif %}
                     </td>
                 </tr>
             </table>

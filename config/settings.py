@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'jalali_date',
     'sweetify',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

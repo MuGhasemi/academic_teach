@@ -2,6 +2,7 @@ import sweetify
 import os
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from config.settings import LOGIN_REDIRECT_URL
 from .models import Lesson, Enrollment
@@ -131,3 +132,27 @@ class LessonUpdateView(UpdateView):
         response = super().form_invalid(form)
         sweetify.toast(self.request, 'ویرایش درس ناموفق بود!', 'error')
         return response
+
+@method_decorator(login_required, name='dispatch')
+class StudentRegisterLesson(View):
+
+    def post(self, request):
+        std = request.user.student
+        lesson = Lesson.objects.get(id=request.POST['lesson'])
+        if lesson.capacity == 0:
+            sweetify.toast(self.request, 'ظرفیت کلاس تکمیل است!', 'success', timer=5000)
+            return redirect(LOGIN_REDIRECT_URL)
+        if Enrollment.objects.filter(student=std, lesson=lesson).first() != None:
+            sweetify.toast(self.request, 'شما قبلا ثبت نام کرده اید', 'success', timer=5000)
+            return redirect(LOGIN_REDIRECT_URL)
+        if std.credit < lesson.price:
+            sweetify.toast(self.request, 'اعتبار شما کافی نیست!', 'error', timer=5000)
+            return redirect('accounts:credit')
+        Enrollment.objects.create(
+                                student=std,
+                                lesson=lesson
+                                )
+        sweetify.toast(self.request, 'ثبت نام شما انجام شد.', 'success', timer=5000)
+        std.credit -= lesson.price
+        std.save()
+        return redirect('courses:student_lesson')

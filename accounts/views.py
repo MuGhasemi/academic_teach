@@ -2,7 +2,7 @@ import os
 import sweetify
 from django.shortcuts import redirect, render
 from django.views import View
-from .forms import LoginUserForm, RegisterUserForm, EditUserForm, EditStudentForm
+from .forms import LoginUserForm, RegisterUserForm, EditUserForm, EditStudentForm, StudentIncerateCreditForm
 from .models import User, Student
 from django.contrib.auth import authenticate, login, logout
 from config.settings import LOGIN_URL, LOGIN_REDIRECT_URL, SIGN_UP_URL
@@ -35,7 +35,6 @@ class LoginView(View):
                 return redirect(LOGIN_REDIRECT_URL)
         sweetify.toast(request, 'ورود ناموفق بود!', 'error')
         return redirect(LOGIN_URL)
-
 
 
 class RegisterView(View):
@@ -71,11 +70,13 @@ class RegisterView(View):
         sweetify.toast(request, 'ایجاد حساب ناموفق بود!', 'error')
         return redirect(SIGN_UP_URL)
 
+
 def LogoutView(request):
     _ = request.user.username
     logout(request)
     sweetify.toast(request, f'{ _ }, از اینکه از سایت ما دیدن کردید، سپاسگذاریم.', 'success')
     return redirect(LOGIN_REDIRECT_URL)
+
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUser(View):
@@ -126,3 +127,28 @@ def delete_photo(request):
     else:
         sweetify.toast(request, 'حذف تصویر پروفایل انجام نشد!', 'error')
         return redirect('/account/profile/')
+
+
+@method_decorator(login_required, name='dispatch')
+class IncreaseCreditView(View):
+    model = Student
+    form_class = StudentIncerateCreditForm
+    template_name = 'accounts/user_credit.html'
+
+    def get(self, request):
+        context ={
+            'form': self.form_class
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        std = request.user.student
+        credit = self.form_class(request.POST)
+        if credit.is_valid():
+            std.credit += credit.cleaned_data['credit']
+            std.save()
+            sweetify.toast(request, 'افزایش اعتبار موفق بود.', 'sucess')
+        else:
+            sweetify.toast(request, 'افزایش اعتبار ناموفق بود!', 'error')
+        return redirect(request.path)
+

@@ -1,5 +1,6 @@
 {% extends 'parents/main.html' %}
 {% load static %}
+{% load humanize %}
 {% load thumbnail %}
 {% block title %}Detail{% endblock %}
 {% block content %}
@@ -17,7 +18,7 @@
           </div>
           <div class="detail-main__top-side__summary__icons__students">
             <span class="material-symbols-outlined"> groups </span>
-            <span>{{ lesson.student }}</span>
+            <span>{{ lesson.get_remaining_capacity }}</span>
           </div>
         </div>
         <div class="detail-main__top-side__summary__badge">
@@ -52,11 +53,13 @@
             {% if lesson.price == 0 %}
             <span>رایگان</span>
             {% else %}
-            <span>{{ lesson.price }}</span>
+            <span>{{ lesson.price | intcomma }}</span>
             <span>تومان</span>
             {% endif %}
           </div>
-          <form action="">
+          <form action="{% url 'courses:register-lesson'%}" method='post'>
+            {% csrf_token %}
+            <input type="hidden" name="lesson" value="{{ lesson.id }}">
             <button>ثبت نام</button>
           </form>
         </div>
@@ -64,12 +67,12 @@
           <div class="teacher-pic">
             {% thumbnail lesson.teacher.teacher_image "2048x2048" crop='center' as im %}
             <img
-              src="{% static 'assets/img/picture/userProfile.png' %}"
+              src="{{ im.url }}"
               alt=""
             />
             {% empty %}
             <img
-              src="{% static 'assets/img/picture/userProfile.png' %}"
+              src="{% static 'assets/img/picture/user_profile.png' %}"
               alt=""
             />
             {% endthumbnail %}
@@ -82,5 +85,4 @@
       </div>
     </div>
   </div>
-<br><br><br><br><br>
 {% endblock %}

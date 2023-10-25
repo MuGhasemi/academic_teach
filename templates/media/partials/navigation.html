@@ -1,8 +1,32 @@
+{% load static %}
+{% load thumbnail %}
 <nav class="container">
   <ul>
     <li><a href="{% url 'courses:home' %}">خانه</a></li>
     <li><a href="">#</a></li>
     <li><a href="">درباره ما</a></li>
   </ul>
+  {% if request.user.is_authenticated %}
+  <div class="nav__dorp__container">
+    {% thumbnail request.user.student.student_image "110x110" crop='center' as im %}
+    <a href="{% url 'accounts:profile' %}" class="nav__profile">
+      <img src="{{ im.url }}" alt=""/>
+    </a>
+    {% empty %}
+    <img src="{% static 'assets/img/picture/user_profile.png' %}"/>
+    {% endthumbnail %}
+    <div class="profile__drop-down">
+      <ul>
+        <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>ریال</li>
+        <li><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
+        <li><a href="{% url 'courses:student_lesson' %}">دوره های من</a></li>
+        <li><a href="{% url 'accounts:credit' %}">افزایش اعتبار</a></li>
+        <div class="line"></div>
+        <li><a href="{% url 'accounts:logout' %}"> خروج </a></li>
+      </ul>
+    </div>
+  </div>
+  {% else %}
   <a href="{% url 'accounts:login' %}" class="nav__log-sing"> ورود/ثبت نام </a>
+  {% endif %}
 </nav>

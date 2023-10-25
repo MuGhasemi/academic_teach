@@ -538,6 +538,20 @@ nav .nav__profile img {
   background-color: var(--primary-color);
   border-radius: var(--radius);
   height: 300px;
+  overflow: hidden;
+}
+.hs {
+  width: 100%;
+}
+
+.hs .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+}
+.hs .swiper-slide img {
+  width: 100%;
 }
 
 /* header counter */
@@ -617,6 +631,12 @@ main .cures-list {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
 }
+main .not-find {
+  text-align: center;
+  font-size: 3rem;
+  font-family: Vazirmatn700;
+  display: none;
+}
 
 main .product-card {
   width: 350px;
@@ -642,11 +662,9 @@ main .product-card .product-card__img {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
-main .product-card .product-card__img img{
+main .product-card .product-card__img img {
   width: 100%;
-  
 }
 main .product-card .product-card__img .product-card__count {
   background-color: var(--primary-white);

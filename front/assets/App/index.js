@@ -25,3 +25,30 @@ const swiper = new Swiper(".swiper", {
   //   el: '.swiper-scrollbar',
   // },
 });
+const swiper1 = new Swiper(".swiper1", {
+  // Optional parameters
+  direction: "horizontal",
+
+  speed: 400,
+  
+  // freeMode: true,
+  slidesPerView: 1,
+
+  // If we need pagination
+  // pagination: {
+  //   el: '.swiper-pagination',
+  // },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 2000,
+  },
+  // And if we need scrollbar
+  // scrollbar: {
+  //   el: '.swiper-scrollbar',
+  // },
+});

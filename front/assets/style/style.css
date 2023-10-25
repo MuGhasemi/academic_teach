@@ -638,6 +638,15 @@ main .product-card .product-card__img {
   height: 200px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+main .product-card .product-card__img img{
+  width: 100%;
+  
 }
 main .product-card .product-card__img .product-card__count {
   background-color: var(--primary-white);

@@ -25,19 +25,30 @@ const swiper = new Swiper(".swiper", {
   //   el: '.swiper-scrollbar',
   // },
 });
+const swiper1 = new Swiper(".swiper1", {
+  // Optional parameters
+  direction: "horizontal",
 
-const navProfile = document.querySelector(".nav__profile");
-const profileDropdown = document.querySelector(".profile__drop-down");
+  speed: 400,
+  
+  // freeMode: true,
+  slidesPerView: 1,
 
-navProfile.addEventListener("mouseenter", () => {
-  profileDropdown.style.display = "block";
-});
-navProfile.addEventListener("mouseleave", () => {
-  profileDropdown.style.display = "none";
-});
-profileDropdown.addEventListener("mouseenter", () => {
-  profileDropdown.style.display = "block";
-});
-profileDropdown.addEventListener("mouseleave", () => {
-  profileDropdown.style.display = "none";
+  // If we need pagination
+  // pagination: {
+  //   el: '.swiper-pagination',
+  // },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 2000,
+  },
+  // And if we need scrollbar
+  // scrollbar: {
+  //   el: '.swiper-scrollbar',
+  // },
 });

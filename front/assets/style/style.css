@@ -538,6 +538,17 @@ nav .nav__profile img {
   background-color: var(--primary-color);
   border-radius: var(--radius);
   height: 300px;
+  overflow: hidden;
+}
+
+.hs .swiper-slide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+}
+.hs .swiper-slide img{
+  width: 100%;
 }
 
 /* header counter */

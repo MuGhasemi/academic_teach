@@ -84,6 +84,8 @@ class ProfileUser(View):
     form_class = EditUserForm
 
     def get(self, request):
+        if not request.user.user_type == 'student':
+            return redirect(LOGIN_REDIRECT_URL)
         std = Student.objects.get(user_id=request.user.pk)
         context = {
             'user_form': self.form_class(instance = request.user),
@@ -131,11 +133,13 @@ def delete_photo(request):
 
 @method_decorator(login_required, name='dispatch')
 class IncreaseCreditView(View):
-    model = Student
     form_class = StudentIncerateCreditForm
     template_name = 'accounts/user_credit.html'
 
     def get(self, request):
+        if not request.user.user_type == 'student':
+            sweetify.toast(self.request, 'شما دانشجو نیستید!', 'error', timer=5000)
+            return redirect(LOGIN_REDIRECT_URL)
         context ={
             'form': self.form_class
         }
@@ -147,8 +151,8 @@ class IncreaseCreditView(View):
         if credit.is_valid():
             std.credit += credit.cleaned_data['credit']
             std.save()
-            sweetify.toast(request, 'افزایش اعتبار موفق بود.', 'sucess')
-        else:
-            sweetify.toast(request, 'افزایش اعتبار ناموفق بود!', 'error')
+            sweetify.toast(request, 'افزایش اعتبار موفق بود.', 'success')
+            return redirect(LOGIN_REDIRECT_URL)
+        sweetify.toast(request, 'افزایش اعتبار ناموفق بود!', 'error')
         return redirect(request.path)
 

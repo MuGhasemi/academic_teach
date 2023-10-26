@@ -860,12 +860,17 @@ main .product-card .product-card__content .product-card__price {
   padding: 30px 10px;
   border-radius: var(--radius);
   filter: var(--shadow-header-filter);
+  text-align: center;
 }
 .detail-bot-side__price .price {
   font-size: 1.7rem;
 }
 .detail-bot-side__price .price span:last-child {
   font-family: Vazirmatn900;
+}
+.detail-bot-side__price form {
+  display: flex;
+  flex-direction: column;
 }
 .detail-bot-side__price button {
   outline: none;
@@ -880,6 +885,18 @@ main .product-card .product-card__content .product-card__price {
   cursor: pointer;
   transition: 0.2s linear;
   filter: var(--shadow-header-filter);
+}
+.edit-less {
+  background-color: var(--secondary-color) !important;
+}
+.edit-less:hover {
+  background-color: var(--primary-color) !important;
+}
+.delete-less {
+  background-color: var(--primary-red) !important;
+}
+.delete-less:hover {
+  background-color: var(--primary-red-hover) !important;
 }
 .detail-bot-side__price button:hover {
   background-color: var(--secondary-color);

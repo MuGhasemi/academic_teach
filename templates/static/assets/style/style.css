@@ -464,7 +464,6 @@ nav .nav__log-sing {
   font-size: 1.2rem;
   font-family: Vazirmatn500;
   transition: 0.2s linear;
-  display: none;
 }
 nav .nav__log-sing:hover {
   background-color: var(--hover-blue);
@@ -487,7 +486,7 @@ nav .nav__profile {
   align-items: center;
   justify-content: center;
   top: -50%;
-  z-index: 1;
+  z-index: 5;
 }
 
 nav .nav__profile img {
@@ -505,6 +504,7 @@ nav .nav__profile img {
   filter: var(--shadow-header-filter);
   padding: 30px 10px;
   display: none;
+  z-index: 2;
 }
 .profile__drop-down ul {
   /* background-color: aqua; */
@@ -860,12 +860,17 @@ main .product-card .product-card__content .product-card__price {
   padding: 30px 10px;
   border-radius: var(--radius);
   filter: var(--shadow-header-filter);
+  text-align: center;
 }
 .detail-bot-side__price .price {
   font-size: 1.7rem;
 }
 .detail-bot-side__price .price span:last-child {
   font-family: Vazirmatn900;
+}
+.detail-bot-side__price form {
+  display: flex;
+  flex-direction: column;
 }
 .detail-bot-side__price button {
   outline: none;
@@ -881,6 +886,32 @@ main .product-card .product-card__content .product-card__price {
   transition: 0.2s linear;
   filter: var(--shadow-header-filter);
 }
+.edit-less {
+  background-color: var(--secondary-color) !important;
+}
+.edit-less:hover {
+  background-color: var(--primary-color) !important;
+}
+.delete-less {
+  background-color: var(--primary-red) !important;
+}
+.delete-less:hover {
+  background-color: var(--primary-red-hover) !important;
+}
+.submit__submitted {
+  background-color: #22c55e !important;
+  cursor: auto !important;
+}
+.submit__submit__notStart {
+  background-color: #9f9f9f !important;
+  cursor: auto !important;
+}
+.submit__ended {
+  background-color: var(--primary-red) !important;
+  cursor: auto !important;
+  font-size: 1rem !important;
+}
+
 .detail-bot-side__price button:hover {
   background-color: var(--secondary-color);
 }
@@ -1055,14 +1086,14 @@ main .product-card .product-card__content .product-card__price {
   width: 100%;
   padding: 20px 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 30px;
 }
 
 .ins-book {
   display: flex;
   align-items: center;
-  height: auto;
+  height: fit-content;
   padding: 10px;
   border-radius: 15px;
   background-color: #ffffff;
@@ -1102,18 +1133,17 @@ main .product-card .product-card__content .product-card__price {
   line-height: 35px;
   overflow: hidden;
 }
-.ins-gen {
-  text-align: center;
-  min-width: 90px;
-  max-width: 120px;
-  height: 35px;
-  border-radius: 8px;
-  background-color: var(--primary-color);
-  color: #fff;
-  display: inline-block;
-  font-size: 1rem;
-  line-height: 35px;
-  overflow: hidden;
+.to-detail a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 1rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+.to-detail a span {
+  color: var(--primary-color);
 }
 
 /* add courses  */

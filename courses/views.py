@@ -137,10 +137,13 @@ class LessonUpdateView(UpdateView):
 class StudentRegisterLesson(View):
 
     def post(self, request):
+        if not request.user.user_type == 'student':
+            sweetify.toast(self.request, 'شما دانشجو نیستید!', 'error', timer=5000)
+            return redirect(LOGIN_REDIRECT_URL)
         std = request.user.student
         lesson = Lesson.objects.get(id=request.POST['lesson'])
         if lesson.capacity == 0:
-            sweetify.toast(self.request, 'ظرفیت کلاس تکمیل است!', 'success', timer=5000)
+            sweetify.toast(self.request, 'ظرفیت کلاس تکمیل است!', 'error', timer=5000)
             return redirect(LOGIN_REDIRECT_URL)
         if Enrollment.objects.filter(student=std, lesson=lesson).first() != None:
             sweetify.toast(self.request, 'شما قبلا ثبت نام کرده اید', 'success', timer=5000)

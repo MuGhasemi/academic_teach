@@ -1,5 +1,6 @@
 import sweetify
 import os
+from datetime import date
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
@@ -60,6 +61,7 @@ class LessonDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['date'] = date.today()
         return context
 
     def get_queryset(self):

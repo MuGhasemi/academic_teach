@@ -85,3 +85,13 @@ class EditUserForm(UserChangeForm):
             'last_name': forms.TextInput(attrs={'disabled': 'disabled',
                                                 'id': 'profileLastNameInput',}),}
     password = None
+
+
+class StudentIncerateCreditForm(forms.Form):
+    credit = forms.IntegerField(
+        required = True,
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'مبلغ',
+                'id':'priceToUp',
+                'dir':'ltr',}))

@@ -62,7 +62,6 @@ class Lesson(models.Model):
         end_date = self.start_date + duration
 
         days_offset = (self.days_of_week - 1) % 7
-        print(days_offset)
         end_date += timedelta(days=days_offset)
 
         return end_date

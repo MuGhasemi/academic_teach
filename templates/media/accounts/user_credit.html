@@ -1,0 +1,41 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% block title %}Credit{% endblock %}
+
+{% block content %}
+<main class="credit-main container">
+    <div class="credit__container">
+      <div class="credit__container__details">
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          <div class="credit__now">
+            <span>اعتبار فعلی :</span>
+            <span id="nowCredit">{{ request.user.student.credit }}</span>
+            <span>تومان</span>
+          </div>
+          <div class="credit__how-much">
+            <span>میزان افزایش اعتبار</span>
+            {{ form.credit }}
+            <span>تومان</span>
+          </div>
+          <div class="credit__increase">
+            <div class="credit__increase__price">
+              <span >مبلغ افزایش: </span>
+              <span id="priceUp">0</span>
+              <span>تومان</span>
+            </div>
+            <div class="credit__increase__all">
+              <span >اعتبار بعد از افزایش:</span>
+              <span id="priceAfterUp">0</span>
+            </div>
+            <div class="credit__increase__btns">
+              <button type="submit">تایید</button>
+              <button type="reset">لغو</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</main>
+<script src="{% static 'assets/App/credit.js' %}"></script>
+{% endblock %}

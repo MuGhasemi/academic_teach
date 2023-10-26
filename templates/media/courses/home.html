@@ -1,5 +1,7 @@
 {% extends 'parents/main.html' %}
 {% load static %}
+{% load humanize %}
+{% load thumbnail %}
 {% block title %}Home{% endblock %}
 {% block content %}
 <main class="container">
@@ -10,6 +12,14 @@
         <div class="swiper-slide">
           <div class="product-card">
             <div class="product-card__img">
+              {% thumbnail lesson.lesson_image "315x200" crop='center' as im %}
+              <img
+                src="{{ im.url }}"
+                alt=""
+              />
+              {% empty %}
+              <img src="{% static 'assets/img/picture/lesson.jpg' %}" alt="">
+              {% endthumbnail %}
               <div class="product-card__count">
                 <!-- FIXME - Add icon -->
                 <span class="material-symbols-outlined"> person </span>
@@ -36,7 +46,7 @@
                   {% if lesson.price == 0 %}
                   <span>رایگان</span>
                   {% else %}
-                  <span>{{ lesson.price }}</span>
+                  <span>{{ lesson.price | intcomma }}</span>
                   <span>تومان</span>
                   {% endif %}
                 </div>
@@ -58,6 +68,14 @@
     {% for lesson in lessons %}
     <div class="product-card">
       <div class="product-card__img">
+        {% thumbnail lesson.lesson_image "315x200" crop='center' as im %}
+        <img
+          src="{{ im.url }}"
+          alt=""
+        />
+        {% empty %}
+        <img src="{% static 'assets/img/picture/lesson.jpg' %}" alt="">
+        {% endthumbnail %}
         <div class="product-card__count">
           <!-- FIXME - Add icon -->
           <span class="material-symbols-outlined"> person </span>
@@ -84,13 +102,15 @@
             {% if lesson.price == 0 %}
             <span>رایگان</span>
             {% else %}
-            <span>{{ lesson.price }}</span>
+            <span>{{ lesson.price | intcomma }}</span>
             <span>تومان</span>
             {% endif %}
           </div>
         </div>
       </div>
     </div>
+    {% empty %}
+      <h3 class="not-find">درس پیدا نشد</h3>
     {% endfor %}
     <!-- end of card  -->
   </div>

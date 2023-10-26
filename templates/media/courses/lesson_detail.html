@@ -22,8 +22,8 @@
           </div>
         </div>
         <div class="detail-main__top-side__summary__badge">
-          <span>تاریخ انتشار: {{ lesson.get_jalali_date.date_created }}</span>
-          <span>تاریخ شروع: {{ lesson.get_jalali_date.start_date }}</span>
+          <span>تاریخ انتشار: {{ lesson.get_jalali_date.date_created | date:'d-m-Y' }}</span>
+          <span>تاریخ شروع: {{ lesson.get_jalali_date.start_date | date:'d-m-Y' }}</span>
         </div>
       </div>
       {% thumbnail lesson.lesson_image "5472x3648" crop='center' as im %}
@@ -59,8 +59,17 @@
           </div>
           <form action="{% url 'courses:register-lesson'%}" method='post'>
             {% csrf_token %}
+            {% if lesson.registration_start <= date and lesson.registration_deadline >= date %}
             <input type="hidden" name="lesson" value="{{ lesson.id }}">
             <button>ثبت نام</button>
+            {% elif lesson.registration_deadline < date %}
+            <button disabled class="submit__ended">زمان ثبت نام به پایان رسیده!</button>
+            {% else %}
+            <button disabled class="submit__submit__notStart">شروع ثبت نام به زودی!</button>
+            {% endif %}
+            {% if request.user.is_staff %}
+            <a href="{% url 'courses:lesson_update' lesson.slug %}">ویرایش درس</a>
+            {% endif %}
           </form>
         </div>
         <div class="detail-bot-side__teacher">

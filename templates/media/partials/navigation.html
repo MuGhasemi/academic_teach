@@ -3,25 +3,33 @@
 <nav class="container">
   <ul>
     <li><a href="{% url 'courses:home' %}">خانه</a></li>
-    <li><a href="">#</a></li>
+    {% if request.user.is_authenticated and request.user.is_staff %}
+    <li><a href="{% url 'courses:add_lesson' %}">اضافه کردن درس</a></li>
+    {% endif %}
     <li><a href="">درباره ما</a></li>
   </ul>
   {% if request.user.is_authenticated %}
   <div class="nav__dorp__container">
-    {% thumbnail request.user.student.student_image "110x110" crop='center' as im %}
-    <a href="{% url 'accounts:profile' %}" class="nav__profile">
+    <a {% if request.user.user_type == 'student' %} href="{% url 'accounts:profile' %}"{% else %} href="" {% endif %} class="nav__profile">
+      {% thumbnail request.user.student.student_image "110x110" crop='center' as im %}
       <img src="{{ im.url }}" alt=""/>
+      {% empty %}
+      {% if request.user.user_type == 'admin' %}
+      <img src="{% static 'assets/img/picture/admin.png' %}"/>
+      {% else %}
+      <img src="{% static 'assets/img/picture/user_profile.png' %}"/>
+      {% endif %}
+      {% endthumbnail %}
     </a>
-    {% empty %}
-    <img src="{% static 'assets/img/picture/user_profile.png' %}"/>
-    {% endthumbnail %}
     <div class="profile__drop-down">
       <ul>
+        {% if request.user.user_type == 'student' %}
         <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>ریال</li>
         <li><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
         <li><a href="{% url 'courses:student_lesson' %}">دوره های من</a></li>
         <li><a href="{% url 'accounts:credit' %}">افزایش اعتبار</a></li>
         <div class="line"></div>
+        {% endif %}
         <li><a href="{% url 'accounts:logout' %}"> خروج </a></li>
       </ul>
     </div>

@@ -61,7 +61,7 @@
             {% csrf_token %}
             <input type="hidden" name="lesson" value="{{ lesson.id }}">
             {% if enrollment %}
-            <button disabled>شما ثبت نام کرده‌اید</button>
+            <button disabled class="submit__submitted">شما ثبت نام کرده‌اید</button>
             {% elif lesson.registration_start <= date and lesson.registration_deadline >= date %}
             <button>ثبت نام</button>
             {% elif lesson.registration_deadline < date %}

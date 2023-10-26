@@ -464,7 +464,6 @@ nav .nav__log-sing {
   font-size: 1.2rem;
   font-family: Vazirmatn500;
   transition: 0.2s linear;
-  display: none;
 }
 nav .nav__log-sing:hover {
   background-color: var(--hover-blue);
@@ -487,7 +486,7 @@ nav .nav__profile {
   align-items: center;
   justify-content: center;
   top: -50%;
-  z-index: 1;
+  z-index: 5;
 }
 
 nav .nav__profile img {
@@ -505,6 +504,7 @@ nav .nav__profile img {
   filter: var(--shadow-header-filter);
   padding: 30px 10px;
   display: none;
+  z-index: 2;
 }
 .profile__drop-down ul {
   /* background-color: aqua; */
@@ -635,7 +635,6 @@ main .not-find {
   text-align: center;
   font-size: 3rem;
   font-family: Vazirmatn700;
-  display: none;
 }
 
 main .product-card {

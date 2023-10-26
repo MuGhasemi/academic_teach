@@ -898,6 +898,20 @@ main .product-card .product-card__content .product-card__price {
 .delete-less:hover {
   background-color: var(--primary-red-hover) !important;
 }
+.submit__submitted {
+  background-color: #22c55e !important;
+  cursor: auto !important;
+}
+.submit__submit__notStart {
+  background-color: #9f9f9f !important;
+  cursor: auto !important;
+}
+.submit__ended {
+  background-color: var(--primary-red) !important;
+  cursor: auto !important;
+  font-size: 1rem !important;
+}
+
 .detail-bot-side__price button:hover {
   background-color: var(--secondary-color);
 }

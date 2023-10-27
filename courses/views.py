@@ -18,7 +18,7 @@ def generate_info(request):
     user = User.objects.aggregate(
                         student_counts=Count('student'),
                         teacher_counts=Count('teacher'))
-    lesson = Lesson.objects.filter(is_active=True).count()
+    lesson = Lesson.objects.filter(is_delete=False).count()
     context = {
         'student': user['student_counts'],
         'teacher': user['teacher_counts'],
@@ -36,7 +36,7 @@ def search_box(request):
 
 class LessonsListView(ListView):
     template_name = 'courses/home.html'
-    queryset = Lesson.objects.filter(is_active=True)
+    queryset = Lesson.objects.filter(is_delete=False)
     context_object_name = 'lessons'
 
     def get_context_data(self, **kwargs):
@@ -55,7 +55,7 @@ class LessonsListView(ListView):
         return queryset
 
 class LessonDetailView(DetailView):
-    queryset = Lesson.objects.filter(is_active=True)
+    queryset = Lesson.objects.filter(is_delete=False)
     template_name = 'courses/lesson_detail.html'
     context_object_name = 'lesson'
 

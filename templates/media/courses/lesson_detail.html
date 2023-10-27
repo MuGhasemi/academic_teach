@@ -62,6 +62,8 @@
             <input type="hidden" name="lesson" value="{{ lesson.id }}">
             {% if enrollment %}
             <button disabled class="submit__submitted">شما ثبت نام کرده‌اید</button>
+            {% elif lesson.get_remaining_capacity == 0 %}
+            <button disabled class="submit__ended">ظرفیت تکمیل است!</button>
             {% elif lesson.registration_start <= date and lesson.registration_deadline >= date %}
             <button>ثبت نام</button>
             {% elif lesson.registration_deadline < date %}

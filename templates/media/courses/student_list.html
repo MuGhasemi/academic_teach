@@ -37,6 +37,12 @@
             <span class="instans-return-text">تاریخ پایان : </span>
             <span class="instans-return-date">{{ enrollment.lesson.get_jalali_date.end_date }}</span>
           </div>
+          <div class="to-detail">
+            <a href="{{ enrollment.lesson.get_absolute_url }}"
+              >مشاهده جزییات
+              <span class="material-symbols-outlined"> arrow_back </span></a
+            >
+          </div>
         </div>
       </div>
       {% endfor %}

@@ -67,11 +67,18 @@
           <tr>
             <td colspan="4">
               <button type="submit">ثبت</button>
-              <button type="reset">لغو</button>
+
+              <!-- NOTE - delete less -->
+              <a class="delete-less">حذف درس</a>
+
+              <button type="button" id="cancelBTN" onclick="history.back(-1)">
+                لغو
+              </button>
             </td>
           </tr>
         </table>
       </form>
     </main>
+    <script></script>
   </body>
 </html>

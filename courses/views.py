@@ -98,12 +98,15 @@ class LessonCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class StudentLessonsView(ListView):
-    template_name = 'courses/student_list.html'
-    context_object_name = 'enrollments'
+class UserLessonsView(ListView):
+    template_name = 'courses/user_lesson_list.html'
+    context_object_name = 'lists'
 
     def get_queryset(self):
-        queryset = Enrollment.objects.filter(student=self.request.user.student)
+        if self.request.user.user_type == 'student':
+            queryset = Enrollment.objects.filter(student=self.request.user.student)
+        elif self.request.user.user_type == 'teacher':
+            queryset = Lesson.objects.filter(teacher = self.request.user.teacher)
         return queryset
 
 

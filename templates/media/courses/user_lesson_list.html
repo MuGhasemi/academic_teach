@@ -1,0 +1,97 @@
+{% extends 'parents/main.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}User Lessons{% endblock %}
+{% block content %}
+<main class="instans container">
+    {% if request.user.user_type == 'student' %}
+    <h3>کلاس های ثبت نام شده</h3>
+
+    <!-- NOTE  container  -->
+    <div class="instans-books">
+      {% for enrollment in lists %}
+      <div class="ins-book">
+        <div class="ins-book-img">
+          {% thumbnail enrollment.lesson.lesson_image "130x137" crop='center' as im %}
+          <img
+              src="{{ im.url }}"
+              alt=""
+          />
+          {% empty %}
+          <img
+              src="{% static 'assets/img/picture/lesson.jpg' %}"
+              alt=""
+          />
+          {% endthumbnail %}
+        </div>
+        <div class="ins-book-detail">
+          <h4>{{ enrollment.lesson.title }}</h4>
+          <div class="ins-gen-aut">
+            <span class="ins-aut">{{ enrollment.lesson.teacher }}</span>
+            
+          </div>
+          <div class="instans-take">
+            <span class="instans-take-text">تاریخ شروع : </span>
+            <span class="instans-take-date">{{ enrollment.lesson.get_jalali_date.start_date }}</span>
+          </div>
+          <div class="instans-return">
+            <span class="instans-return-text">تاریخ پایان : </span>
+            <span class="instans-return-date">{{ enrollment.lesson.get_jalali_date.end_date }}</span>
+          </div>
+          <div class="to-detail">
+            <a href="{{ enrollment.lesson.get_absolute_url }}"
+              >مشاهده جزییات
+              <span class="material-symbols-outlined"> arrow_back </span></a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% elif request.user.user_type == 'teacher' %}
+    <h3>کلاس های شما</h3>
+
+    <!-- NOTE  container  -->
+    <div class="instans-books">
+      {% for enrollment in lists %}
+      <div class="ins-book">
+        <div class="ins-book-img">
+          {% thumbnail enrollment.lesson_image "130x137" crop='center' as im %}
+          <img
+              src="{{ im.url }}"
+              alt=""
+          />
+          {% empty %}
+          <img
+              src="{% static 'assets/img/picture/lesson.jpg' %}"
+              alt=""
+          />
+          {% endthumbnail %}
+        </div>
+        <div class="ins-book-detail">
+          <h4>{{ enrollment.title }}</h4>
+          <div class="ins-gen-aut">
+            <span class="ins-aut">{{ enrollment.teacher }}</span>
+            
+          </div>
+          <div class="instans-take">
+            <span class="instans-take-text">تاریخ شروع : </span>
+            <span class="instans-take-date">{{ enrollment.get_jalali_date.start_date | date:'d-m-Y' }}</span>
+          </div>
+          <div class="instans-return">
+            <span class="instans-return-text">تاریخ پایان : </span>
+            <span class="instans-return-date">{{ enrollment.get_jalali_date.end_date | date:'d-m-Y' }}</span>
+          </div>
+          <div class="to-detail">
+            <a href="{{ enrollment.get_absolute_url }}"
+              >مشاهده جزییات
+              <span class="material-symbols-outlined"> arrow_back </span></a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+</main>
+{% endblock %}

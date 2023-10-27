@@ -26,10 +26,12 @@
         {% if request.user.user_type == 'student' %}
         <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>ریال</li>
         <li><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
-        <li><a href="{% url 'courses:student_lesson' %}">دوره های من</a></li>
+        <li><a href="{% url 'courses:user_lesson' %}">دوره های من</a></li>
         <li><a href="{% url 'accounts:credit' %}">افزایش اعتبار</a></li>
-        <div class="line"></div>
+        {% elif request.user.user_type == 'teacher' %}
+        <li><a href="{% url 'courses:user_lesson' %}">درس های من</a></li>
         {% endif %}
+        <div class="line"></div>
         <li><a href="{% url 'accounts:logout' %}"> خروج </a></li>
       </ul>
     </div>

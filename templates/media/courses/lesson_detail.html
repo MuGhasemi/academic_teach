@@ -70,7 +70,7 @@
             <button disabled class="submit__submit__notStart">شروع ثبت نام به زودی!</button>
             {% endif %}
             {% if request.user.is_staff %}
-            <a href="{% url 'courses:lesson_update' lesson.slug %}">ویرایش درس</a>
+            <a href="{% url 'courses:lesson_update' lesson.slug %}">ویرایش</a>
             {% endif %}
           </form>
         </div>

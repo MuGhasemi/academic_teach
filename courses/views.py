@@ -1,7 +1,7 @@
 import sweetify
 import os
 from datetime import date
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -166,3 +166,22 @@ class StudentRegisterLesson(View):
         std.credit -= lesson.price
         std.save()
         return redirect('courses:student_lesson')
+
+
+@login_required
+def delete_lesson(request, slug):
+    if not request.method == 'GET':
+        return redirect(LOGIN_REDIRECT_URL)
+    if not request.user.is_staff:
+        sweetify.toast(request, 'شما اجازه دسترسی به این صفحه را ندارید!', 'error')
+        return redirect(LOGIN_REDIRECT_URL)
+    lesson = get_object_or_404(Lesson, slug=slug)
+    enrollments = lesson.enrollments.all()
+    enrollments.delete()
+
+    lesson.is_active = False
+    lesson.is_delete = True
+    lesson.save()
+    sweetify.toast(request, 'درس با موفقیت حذف شد.', 'success', timer=4000)
+    return redirect(LOGIN_REDIRECT_URL)
+

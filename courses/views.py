@@ -62,11 +62,15 @@ class LessonDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['date'] = date.today()
+        lesson = self.get_object()
         if self.request.user.user_type == 'student':
-            lesson = self.get_object()
             std = self.request.user.student
             enrollment = Enrollment.objects.filter(student=std, lesson=lesson).first()
             context['enrollment'] = enrollment
+        elif self.request.user.user_type == 'teacher':
+            context['students_list'] = lesson.enrollments.values_list('student__user__first_name',
+                                                                      'student__user__last_name',
+                                                                      'student__user__email')
         return context
 
     def get_queryset(self):

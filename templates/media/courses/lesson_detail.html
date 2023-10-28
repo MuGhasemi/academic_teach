@@ -42,12 +42,37 @@
     </div>
     <div class="detail-bot-side">
       <div class="detail-bot-side__desc">
-        <h3>{{ lesson.title }}</h3>
-        <p>
+        <div class="desc">
+          <h3>{{ lesson.title }}</h3>
+          <p>
             {{ lesson.description }}
-        </p>
+          </p>
+        </div>
+        {% if request.user.is_teacher %}
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <td>نام</td>
+                <td>نام خانوادگی</td>
+                <td>ایمیل</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for std in students_list %}
+              <tr>
+                <td>{{ std.0 }}</td>
+                <td>{{ std.1 }}</td>
+                <td>{{ std.2 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
       </div>
       <div class="detail-bot-side__price-teacher">
+        {% if not request.user.is_teacher %}
         <div class="detail-bot-side__price">
           <div class="price">
             {% if lesson.price == 0 %}
@@ -76,6 +101,7 @@
             {% endif %}
           </form>
         </div>
+        {% endif %}
         <div class="detail-bot-side__teacher">
           <div class="teacher-pic">
             {% thumbnail lesson.teacher.teacher_image "2048x2048" crop='center' as im %}

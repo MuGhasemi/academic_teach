@@ -4,7 +4,7 @@
 {% block title %}User Lessons{% endblock %}
 {% block content %}
 <main class="instans container">
-    {% if request.user.user_type == 'student' %}
+    {% if request.user.is_student %}
     <h3>کلاس های ثبت نام شده</h3>
 
     <!-- NOTE  container  -->
@@ -48,7 +48,7 @@
       </div>
       {% endfor %}
     </div>
-    {% elif request.user.user_type == 'teacher' %}
+    {% elif request.user.is_teacher %}
     <h3>کلاس های شما</h3>
 
     <!-- NOTE  container  -->

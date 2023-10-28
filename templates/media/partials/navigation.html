@@ -10,7 +10,7 @@
   </ul>
   {% if request.user.is_authenticated %}
   <div class="nav__dorp__container">
-    <a {% if request.user.user_type == 'student' %} href="{% url 'accounts:profile' %}"{% else %} href="" {% endif %} class="nav__profile">
+    <a {% if request.user.is_student %} href="{% url 'accounts:profile' %}"{% else %} href="" {% endif %} class="nav__profile">
       {% thumbnail request.user.student.student_image "110x110" crop='center' as im %}
       <img src="{{ im.url }}" alt=""/>
       {% empty %}
@@ -23,12 +23,12 @@
     </a>
     <div class="profile__drop-down">
       <ul>
-        {% if request.user.user_type == 'student' %}
+        {% if request.user.is_student %}
         <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>ریال</li>
         <li><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
         <li><a href="{% url 'courses:user_lesson' %}">دوره های من</a></li>
         <li><a href="{% url 'accounts:credit' %}">افزایش اعتبار</a></li>
-        {% elif request.user.user_type == 'teacher' %}
+        {% elif request.user.is_teacher %}
         <li><a href="{% url 'courses:user_lesson' %}">درس های من</a></li>
         {% endif %}
         <div class="line"></div>

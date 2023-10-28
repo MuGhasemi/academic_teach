@@ -1,6 +1,15 @@
 from django.contrib import admin
 from .models import User, Student, Teacher
 
-admin.site.register(User)
+class UserAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {"fields": ("username",)}),
+        (("Personal info"), {"fields": ("first_name", "last_name", "email")}),
+        (("Important dates"), {"fields": ("is_active", "date_joined",  "last_login")}),
+    )
+
+    list_display = ("username", "email", "user_type", "is_active")
+
+admin.site.register(User, UserAdmin)
 admin.site.register(Student)
 admin.site.register(Teacher)

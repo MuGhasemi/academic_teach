@@ -63,11 +63,11 @@ class LessonDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['date'] = date.today()
         lesson = self.get_object()
-        if self.request.user.user_type == 'student':
+        if self.request.user.is_student():
             std = self.request.user.student
             enrollment = Enrollment.objects.filter(student=std, lesson=lesson).first()
             context['enrollment'] = enrollment
-        elif self.request.user.user_type == 'teacher':
+        elif self.request.user.is_teacher():
             context['students_list'] = lesson.enrollments.values_list('student__user__first_name',
                                                                       'student__user__last_name',
                                                                       'student__user__email')
@@ -107,9 +107,9 @@ class UserLessonsView(ListView):
     context_object_name = 'lists'
 
     def get_queryset(self):
-        if self.request.user.user_type == 'student':
+        if self.request.user.is_student():
             queryset = Enrollment.objects.filter(student=self.request.user.student)
-        elif self.request.user.user_type == 'teacher':
+        elif self.request.user.is_teacher():
             queryset = Lesson.objects.filter(teacher = self.request.user.teacher)
         return queryset
 
@@ -151,7 +151,7 @@ class LessonUpdateView(UpdateView):
 class StudentRegisterLesson(View):
 
     def post(self, request):
-        if not request.user.user_type == 'student':
+        if not request.user.is_student():
             sweetify.toast(self.request, 'شما دانشجو نیستید!', 'error', timer=5000)
             return redirect(LOGIN_REDIRECT_URL)
         std = request.user.student

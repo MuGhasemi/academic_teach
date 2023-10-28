@@ -84,7 +84,7 @@ class ProfileUser(View):
     form_class = EditUserForm
 
     def get(self, request):
-        if not request.user.user_type == 'student':
+        if not request.user.is_student():
             return redirect(LOGIN_REDIRECT_URL)
         std = Student.objects.get(user_id=request.user.pk)
         context = {
@@ -137,7 +137,7 @@ class IncreaseCreditView(View):
     template_name = 'accounts/user_credit.html'
 
     def get(self, request):
-        if not request.user.user_type == 'student':
+        if not request.user.is_student():
             sweetify.toast(self.request, 'شما دانشجو نیستید!', 'error', timer=5000)
             return redirect(LOGIN_REDIRECT_URL)
         context ={

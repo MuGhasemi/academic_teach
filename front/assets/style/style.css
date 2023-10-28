@@ -831,6 +831,8 @@ main .product-card .product-card__content .product-card__price {
 }
 .detail-bot-side__desc {
   flex: 1;
+}
+.detail-bot-side__desc .desc {
   filter: var(--shadow-header-filter);
   background-color: #fff;
   border-radius: var(--radius);
@@ -838,6 +840,54 @@ main .product-card .product-card__content .product-card__price {
   margin-left: 30px;
   height: fit-content;
 }
+.detail-bot-side__desc .table {
+  margin-top: var(--upper-distance);
+  filter: var(--shadow-header-filter);
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: 40px;
+  margin-left: 30px;
+  height: fit-content;
+}
+.detail-bot-side__desc .table table {
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  /* border-collapse: collapse; */
+  border-spacing: 0 15px;
+  /* height: fit-content; */
+}
+.detail-bot-side__desc .table table thead {
+  font-family: Vazirmatn600;
+  background-color: var(--primary-color) !important;
+}
+.detail-bot-side__desc .table table thead td {
+  color: #fff;
+}
+.detail-bot-side__desc .table table tbody tr:nth-child(odd) {
+  background-color: #dbdbdb;
+}
+.detail-bot-side__desc .table table tbody tr:nth-child(even) {
+  background-color: #e8e8e8;
+}
+.detail-bot-side__desc .table table tr td {
+  padding: 10px 30px;
+}
+
+.detail-bot-side__desc .table table td:first-child {
+  border-top-right-radius: 10px;
+}
+.detail-bot-side__desc .table table td:last-child {
+  border-top-left-radius: 10px;
+}
+
+.detail-bot-side__desc .table table td:first-child {
+  border-bottom-right-radius: 10px;
+}
+.detail-bot-side__desc .table table td:last-child {
+  border-bottom-left-radius: 10px;
+}
+
 .detail-bot-side__desc h3 {
   font-size: 2rem;
   font-family: Vazirmatn800;
@@ -861,6 +911,7 @@ main .product-card .product-card__content .product-card__price {
   border-radius: var(--radius);
   filter: var(--shadow-header-filter);
   text-align: center;
+  margin-bottom: var(--upper-distance);
 }
 .detail-bot-side__price .price {
   font-size: 1.7rem;
@@ -919,7 +970,7 @@ main .product-card .product-card__content .product-card__price {
 }
 .detail-bot-side__teacher {
   background-color: #fff;
-  margin-top: var(--upper-distance);
+  /* margin-top: var(--upper-distance); */
   border-radius: var(--radius);
   padding: 30px;
   filter: var(--shadow-header-filter);

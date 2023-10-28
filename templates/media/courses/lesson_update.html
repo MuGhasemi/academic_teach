@@ -45,7 +45,10 @@
         <tr>
             <td colspan="4">
             <button type="submit">ویرایش</button>
-            <button type="reset">لغو</button>
+            <a href="{% url 'courses:delete-lesson' lesson.slug %}" class="delete-less">حذف درس</a>
+            <button type="button" id="cancelBTN" onclick="history.back(-1)">
+                لغو
+            </button>
             </td>
         </tr>
         </table>

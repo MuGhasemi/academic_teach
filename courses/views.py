@@ -1,7 +1,7 @@
 import sweetify
 import os
 from datetime import date
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -18,7 +18,7 @@ def generate_info(request):
     user = User.objects.aggregate(
                         student_counts=Count('student'),
                         teacher_counts=Count('teacher'))
-    lesson = Lesson.objects.filter(is_active=True).count()
+    lesson = Lesson.objects.filter(is_delete=False).count()
     context = {
         'student': user['student_counts'],
         'teacher': user['teacher_counts'],
@@ -36,7 +36,7 @@ def search_box(request):
 
 class LessonsListView(ListView):
     template_name = 'courses/home.html'
-    queryset = Lesson.objects.filter(is_active=True)
+    queryset = Lesson.objects.filter(is_delete=False)
     context_object_name = 'lessons'
 
     def get_context_data(self, **kwargs):
@@ -55,7 +55,7 @@ class LessonsListView(ListView):
         return queryset
 
 class LessonDetailView(DetailView):
-    queryset = Lesson.objects.filter(is_active=True)
+    queryset = Lesson.objects.filter(is_delete=False)
     template_name = 'courses/lesson_detail.html'
     context_object_name = 'lesson'
 
@@ -98,12 +98,15 @@ class LessonCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class StudentLessonsView(ListView):
-    template_name = 'courses/student_list.html'
-    context_object_name = 'enrollments'
+class UserLessonsView(ListView):
+    template_name = 'courses/user_lesson_list.html'
+    context_object_name = 'lists'
 
     def get_queryset(self):
-        queryset = Enrollment.objects.filter(student=self.request.user.student)
+        if self.request.user.user_type == 'student':
+            queryset = Enrollment.objects.filter(student=self.request.user.student)
+        elif self.request.user.user_type == 'teacher':
+            queryset = Lesson.objects.filter(teacher = self.request.user.teacher)
         return queryset
 
 
@@ -166,3 +169,22 @@ class StudentRegisterLesson(View):
         std.credit -= lesson.price
         std.save()
         return redirect('courses:student_lesson')
+
+
+@login_required
+def delete_lesson(request, slug):
+    if not request.method == 'GET':
+        return redirect(LOGIN_REDIRECT_URL)
+    if not request.user.is_staff:
+        sweetify.toast(request, 'شما اجازه دسترسی به این صفحه را ندارید!', 'error')
+        return redirect(LOGIN_REDIRECT_URL)
+    lesson = get_object_or_404(Lesson, slug=slug)
+    enrollments = lesson.enrollments.all()
+    enrollments.delete()
+
+    lesson.is_active = False
+    lesson.is_delete = True
+    lesson.save()
+    sweetify.toast(request, 'درس با موفقیت حذف شد.', 'success', timer=4000)
+    return redirect(LOGIN_REDIRECT_URL)
+

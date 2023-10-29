@@ -172,7 +172,7 @@ class StudentRegisterLesson(View):
         sweetify.toast(self.request, 'ثبت نام شما انجام شد.', 'success', timer=5000)
         std.credit -= lesson.price
         std.save()
-        return redirect('courses:student_lesson')
+        return redirect('courses:user_lesson')
 
 
 @login_required

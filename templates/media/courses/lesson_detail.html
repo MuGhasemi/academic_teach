@@ -48,7 +48,7 @@
             {{ lesson.description }}
           </p>
         </div>
-        {% if request.user.is_teacher %}
+        {% if request.user.is_teacher and  lesson.teacher == request.user.teacher %}
         <div class="table">
           <table>
             <thead>

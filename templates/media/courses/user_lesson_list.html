@@ -32,11 +32,11 @@
           </div>
           <div class="instans-take">
             <span class="instans-take-text">تاریخ شروع : </span>
-            <span class="instans-take-date">{{ enrollment.lesson.get_jalali_date.start_date }}</span>
+            <span class="instans-take-date">{{ enrollment.lesson.get_jalali_date.start_date | date:'d-m-Y'  }}</span>
           </div>
           <div class="instans-return">
             <span class="instans-return-text">تاریخ پایان : </span>
-            <span class="instans-return-date">{{ enrollment.lesson.get_jalali_date.end_date }}</span>
+            <span class="instans-return-date">{{ enrollment.lesson.get_jalali_date.end_date | date:'d-m-Y'  }}</span>
           </div>
           <div class="to-detail">
             <a href="{{ enrollment.lesson.get_absolute_url }}"

@@ -24,7 +24,7 @@
     <div class="profile__drop-down">
       <ul>
         {% if request.user.is_student %}
-        <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>ریال</li>
+        <li><span>اعتبار:</span><span>{{ request.user.student.credit }}</span>تومان</li>
         <li><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
         <li><a href="{% url 'courses:user_lesson' %}">دوره های من</a></li>
         <li><a href="{% url 'accounts:credit' %}">افزایش اعتبار</a></li>

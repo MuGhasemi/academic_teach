@@ -6,7 +6,7 @@
     {% if request.user.is_authenticated and request.user.is_staff %}
     <li><a href="{% url 'courses:add_lesson' %}">اضافه کردن درس</a></li>
     {% endif %}
-    <li><a href="">درباره ما</a></li>
+    <li><a href="{% url 'accounts:about' %}">درباره ما</a></li>
   </ul>
   {% if request.user.is_authenticated %}
   <div class="nav__dorp__container">

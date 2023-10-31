@@ -9,6 +9,10 @@ from config.settings import LOGIN_URL, LOGIN_REDIRECT_URL, SIGN_UP_URL
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+
+def about(request):
+    return render(request, 'accounts/about.html', {})
+
 class LoginView(View):
     template_name = "accounts/login.html"
     form_class = LoginUserForm

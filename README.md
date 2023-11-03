@@ -25,6 +25,7 @@ The project utilizes the following models:
 - User-friendly messages and notifications with the `Sweetify` package
 - Conversion of dates from the Gregorian calendar to the solar calendar using the `Django-Jalali-Date` package
 - Image optimization and performance enhancement with the `Sorl-Thumbnail` package
+- Render partials using `django-render-partial` package
 
 ## Installation and Setup
 

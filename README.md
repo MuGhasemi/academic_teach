@@ -1,28 +1,75 @@
 # academic_teach
 
-To start a Django project, you need to create a virtual environment first.
-You can do this by running the following command in your terminal:
-`python -m venv yourVenvName`
+`academic_teach` is an educational website that allows students to purchase and enroll in predefined courses.
 
-Replace "yourVenvName" with the name you want to give to your virtual environment.
+## Description
 
-Once your virtual environment is created, activate it by running:
-`yourVenvName\Scripts\activate`
+This project provides a platform where students can browse and select a list of available courses. After registering on the site and choosing the courses they want, they can buy and register on it. Students will have access to their user panel, where they can view their course details and schedule, can also edit their user profile.
+Also teachers have access to their user panel and can see their courses and in the details, in addition to the course details, they can also see their students.
 
-To exit from yourVenvName, you can use the command `yourVenvName\Scripts\deactivate` in your terminal or command line. This will deactivate the virtual environment and return you to your normal system environment.
+## Models
 
-Now, you can install all the required packages for your project using the pip package manager. 
-To do this, navigate to the directory where your project is located and run the following command:
-`pip install -r requirements.txt`
+The project utilizes the following models:
 
-Make sure that the "requirements.txt" file is present in the directory. This command will install all the packages listed in the file and make them available for use in your project.
+- **User**: Customized Django User model
+- **Student**: Inherited from the User model and stores the details of students.
+- **Teacher**: Inherited from the User model and stores the details of teachers.
+- **Lesson**: Contains details about the courses available on the website, such as lesson title, description, and associated teacher.
+- **Enrollment**: Tracks students enrollment in specific courses, including student, course, and enrollment date.
 
-After installing all the required packages, you can run your Django project using the `python manage.py runserver` command.
-To do this, navigate to the directory where your project is located and enter the above command in your terminal or command line.
+## Features
 
-Once the command is executed, the development server will start running at http://127.0.0.1:8000/.
-You can open this URL in your web browser to see the homepage of your Django project.
+- Create, read, update, and delete (CRUD) operations for books
+- User authentication system
+- Efficient image management using the `Pillow` package
+- User-friendly messages and notifications with the `Sweetify` package
+- Conversion of dates from the Gregorian calendar to the solar calendar using the `Django-Jalali-Date` package
+- Image optimization and performance enhancement with the `Sorl-Thumbnail` package
 
-Contributors:
+## Installation and Setup
+
+1. Clone the project from the GitHub repository:
+
+```
+git clone https://github.com/MuGhasemi/academic_teach.git
+```
+
+2. Navigate to the project directory and activate the virtual environment:
+
+```
+cd academic_teach
+python -m venv venv
+source venv/bin/activate
+```
+
+3. Install project dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+4. Run the migrations:
+
+```
+python manage.py migrate
+```
+
+5. Start the development server:
+
+```
+python manage.py runserver
+```
+
+The project will now be accessible on your local development environment. Open your web browser and visit the provided URL to access the website.
+
+## Contributing
+
+If you are interested in contributing to the project, feel free to share feedback, ideas, and bug reports through the Issues section and submit Pull Requests on GitHub.
+
+
+## Contributors:
+
+If you have any questions or requests, you can contact me:
+
 - Backend Developer: [Muhammad Ghasemi](https://github.com/MuGhasemi)
 - Frontend Developer: [Reza Mohammadzade](https://github.com/reza-sdo)
